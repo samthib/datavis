@@ -26,13 +26,13 @@
       <!-- Graphic name -->
       <div class="form-group col-md-4">
         <label for="name">Name</label>
-        <input id="name" name="name" type="text" class="form-control" value="{{ $message->name }}" required>
+        <input id="name" name="name" type="text" class="form-control" value="{{ $message->name }}" readonly>
       </div><!-- Graphic name -->
 
       <!-- Email -->
       <div class="form-group col-md-4">
         <label for="email">Email</label>
-        <input id="email" name="email" type="text" class="form-control" value="{{ $message->email }}" required>
+        <input id="email" name="email" type="text" class="form-control" value="{{ $message->email }}" readonly>
       </div><!-- Email -->
 
       <!-- Form buttons -->
@@ -45,13 +45,19 @@
       <!-- Subject -->
       <div class="form-group col-md-8">
         <label for="subject">Subject</label>
-        <input id="subject" name="subject" type="text" class="form-control" value="{{ $message->subject }}" required>
+        <input id="subject" name="subject" type="text" class="form-control" value="{{ $message->subject }}" readonly>
       </div><!-- Subject -->
 
       <!-- Message -->
       <div class="form-group col-md-8">
         <label for="message">Message</label>
-        <textarea id="message" class="form-control" name="message" rows="5">{{ $message->message }}</textarea>
+        <div class="form-control" style="height: 250px; overflow: auto" readonly>
+          @if ($message->sent)
+            {!! $message->message !!}
+          @else
+            {{ $message->message }}
+          @endif
+        </div>
       </div><!-- Message -->
 
 

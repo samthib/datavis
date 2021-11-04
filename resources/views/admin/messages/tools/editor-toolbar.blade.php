@@ -27,11 +27,11 @@ var quill = new Quill('#editor', {
   theme: 'snow'
 });
 
-// // Populate hidden form on submit
-// var form = document.querySelector('form');
-// form.onsubmit = function() {
-//   var message = document.querySelector('input[name=message]');
-//   message.value = JSON.stringify(quill.getContents());
-// }
+
+// Populate hidden textarea on change
+quill.on('text-change', function() {
+  let message =  document.querySelector('#message');
+  message.innerHTML = quill.root.innerHTML;
+});
 
 </script>

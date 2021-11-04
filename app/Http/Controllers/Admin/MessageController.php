@@ -66,7 +66,7 @@ class MessageController extends Controller
 
       Mail::to($validated['email'])->send(new SendEmail($validated));
 
-      return back()->with('message', 'Message envoyé');
+      return redirect()->route('admin.messages.sent.index')->with('message', 'Message envoyé');
     }
 
     /**

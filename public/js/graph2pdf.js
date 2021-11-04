@@ -72,5 +72,9 @@ window.generatePDF = async function (graph, title) {
   }
 
   // Save on the last page
-  doc.save('MyPdf.pdf');
+  if (title.length == 1) {
+    doc.save(title[0]+'.pdf');
+  } else if (title.length > 1) {
+    doc.save(title[0]+','+title[1]+',....pdf');
+  }
 }

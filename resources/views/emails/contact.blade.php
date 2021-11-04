@@ -8,7 +8,7 @@
 {{ $data['message'] }}
 @endcomponent
 
-@component('mail::button', ['url' => ''])
+@component('mail::button', ['url' => url('/'), 'color' => 'success'])
 Button Text
 @endcomponent
 

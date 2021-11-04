@@ -53,12 +53,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function()
     /* Route to manage Admin's Board Messages */
     Route::get('/messages/inbox', [Admin\MessageController::class, 'index'])->name('messages.inbox.index');
     Route::get('/messages/sent', [Admin\MessageController::class, 'sent'])->name('messages.sent.index');
-    Route::get('/messages/create', [Admin\MessageController::class, 'create'])->name('messages.create');
-    Route::post('/messages/store', [Admin\MessageController::class, 'store'])->name('messages.store');
-    Route::get('/messages/{message}', [Admin\MessageController::class, 'show'])->name('messages.show');
-    Route::get('/messages/{message}/edit', [Admin\MessageController::class, 'edit'])->name('messages.edit');
-    Route::put('/messages/{message}/update', [Admin\MessageController::class, 'update'])->name('messages.update');
-    Route::delete('/messages/{message}', [Admin\MessageController::class, 'destroy'])->name('messages.destroy');
+    Route::resource('/messages', Admin\MessageController::class, ['except' => ['index', 'edit']]);
 
     /* Route to manage the application's Pages */
     Route::resource('/pages', Admin\PageController::class);

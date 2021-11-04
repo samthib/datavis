@@ -30,18 +30,18 @@
         @foreach ($messages as $key => $message)
           <tr>
             <td class="align-middle"><b>{{ $message->id }}</b></td>
-            <td class="align-middle">{{ $message->name }}</td>
-            <td class="align-middle"><a href="mailto:{{ $message->email }}" target="_blank">{{ $message->email }}</a></td>
-            <td class="align-middle">{{ $message->subject }}</td>
-            <td class="align-middle">{{ (strlen($message->message) > 15) ? substr($message->message, 0, 15).' ...' : $message->message }}</td>
+            <td class="align-middle">{{ Str::limit($message->name, 20) }}</td>
+            <td class="align-middle"><a href="mailto:{{ $message->email }}" target="_blank">{{ Str::limit($message->email, 20) }}</a></td>
+            <td class="align-middle">{{ Str::limit($message->subject, 20) }}</td>
+            <td class="align-middle">{{ Str::limit(strip_tags($message->message), 20) }}</td>
             <td class="align-middle">{{ $message->created_at->format('Y-m-d h:i') }}</td>
             <td class="text-center">
               <a class="btn btn-warning" href="{!! route('admin.messages.show', $message) !!}" role="button">
                 <span data-feather="eye"></span>
               </a>
-              <a class="btn btn-primary" href="{!! route('admin.messages.edit', $message) !!}" role="button">
+              {{-- <a class="btn btn-primary" href="{!! route('admin.messages.edit', $message) !!}" role="button">
                 <span data-feather="edit"></span>
-              </a>
+              </a> --}}
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$key}}">
                 <span data-feather="trash"></span>
