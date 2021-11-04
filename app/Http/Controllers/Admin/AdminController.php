@@ -18,7 +18,7 @@ class AdminController extends Controller
     {
       $user = User::find(auth()->user());
 
-      $visits = Visit::paginate(20);
+      $visits = Visit::latest()->paginate(20);
 
       return view('admin.index', compact('user', 'visits'));
     }

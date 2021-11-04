@@ -31,7 +31,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($visits->reverse() as $key => $visit)
+            @foreach ($visits as $key => $visit)
               <tr>
                 <td>{{ $visit->id }}</td>
                 <td>{{ $visit->date }}</td>
