@@ -67,7 +67,7 @@
           <div class="col-12 col-md-6 d-flex flex-column align-items-center justify-content-end px-md-5">
             <h2 class="display-5 py-3 text-dark">Code Javascript</h2>
             <div class="bg-dark shadow overflow-auto text-center w-100" style="height: 600px; border-radius: 21px 21px 0 0;">
-              <pre class="m-0"><code class="javascript text-left">{!! $chart->js !!}</code></pre>
+              <pre class="m-0 h-100"><code class="javascript text-left h-100">{!! $chart->js !!}</code></pre>
             </div>
           </div>{{-- Code part --}}
         </div>{{-- Code & Description Row --}}

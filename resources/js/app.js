@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 /* Personnal JS */
+require('./graph2pdf');
+require('./quillToolbar');
 require('./editors');
 require('./dashboard');
-require('./graph2pdf');
-require('./alert');

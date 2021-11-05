@@ -30681,20 +30681,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/js/alert.js":
-/*!*******************************!*\
-  !*** ./resources/js/alert.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-window.addEventListener('load', function () {
-  console.log('test résussi');
-  alert('OKIDOKI');
-});
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -30706,13 +30692,13 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* Personnal JS */
 
 
+__webpack_require__(/*! ./graph2pdf */ "./resources/js/graph2pdf.js");
+
+__webpack_require__(/*! ./quillToolbar */ "./resources/js/quillToolbar.js");
+
 __webpack_require__(/*! ./editors */ "./resources/js/editors.js");
 
 __webpack_require__(/*! ./dashboard */ "./resources/js/dashboard.js");
-
-__webpack_require__(/*! ./graph2pdf */ "./resources/js/graph2pdf.js");
-
-__webpack_require__(/*! ./alert */ "./resources/js/alert.js");
 
 /***/ }),
 
@@ -30755,13 +30741,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-/* globals Chart:false, feather:false */
-(function () {
-  'use strict';
-
-  feather.replace(); // Graphs
-
-  var ctx = document.getElementById('myChart'); // eslint-disable-next-line no-unused-vars
+// Only where #visitsChart exists
+if (document.getElementById('visitsChart')) {
+  // Graphs
+  var ctx = document.getElementById('visitsChart'); // eslint-disable-next-line no-unused-vars
 
   var myChart = new Chart(ctx, {
     type: 'line',
@@ -30789,7 +30772,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       }
     }
   });
-})();
+}
 
 /***/ }),
 
@@ -30806,9 +30789,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * @param  {string} toId        The id of the textarea to fill
  * @return {void}
  */
-function codeToTextarea(fromElement, toId) {
+window.codeToTextarea = function (fromElement, toId) {
   document.getElementById(toId).value = fromElement.innerText;
-}
+};
 
 /***/ }),
 
@@ -30854,8 +30837,7 @@ window.graphToPDF = function (id) {
   }
 
   var graph = [];
-  var title = []; // Create arrays of graphs and titles
-
+  var title = [];
   iframe.forEach(function (item, i) {
     graph[i] = item.contentDocument.querySelector('#graph');
     title[i] = titles[i].innerText;
@@ -30937,7 +30919,11 @@ window.generatePDF = /*#__PURE__*/function () {
 
           case 15:
             // Save on the last page
-            doc.save('MyPdf.pdf');
+            if (title.length == 1) {
+              doc.save(title[0] + '.pdf');
+            } else if (title.length > 1) {
+              doc.save(title[0] + ',' + title[1] + ',....pdf');
+            }
 
           case 16:
           case "end":
@@ -30951,6 +30937,77 @@ window.generatePDF = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+/***/ }),
+
+/***/ "./resources/js/quillToolbar.js":
+/*!**************************************!*\
+  !*** ./resources/js/quillToolbar.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Initialize Quill editor
+ * @type {Array}
+ */
+var quillToolbarOptions = [['bold', 'italic', 'underline', 'strike'], // toggled buttons
+['blockquote', 'code-block'], [{
+  'header': 1
+}, {
+  'header': 2
+}], // custom button values
+[{
+  'list': 'ordered'
+}, {
+  'list': 'bullet'
+}], [{
+  'script': 'sub'
+}, {
+  'script': 'super'
+}], // superscript/subscript
+[{
+  'indent': '-1'
+}, {
+  'indent': '+1'
+}], // outdent/indent
+[{
+  'direction': 'rtl'
+}], // text direction
+[{
+  'size': ['small', false, 'large', 'huge']
+}], // custom dropdown
+[{
+  'header': [1, 2, 3, 4, 5, 6, false]
+}], [{
+  'color': []
+}, {
+  'background': []
+}], // dropdown with defaults from theme
+[{
+  'font': []
+}], [{
+  'align': []
+}], ['clean'] // remove formatting button
+]; // Only where #editor exists
+
+if (document.querySelector('#editor')) {
+  /**
+  * Quill object
+  * @type {Quill}
+  */
+  var quill = new Quill('#editor', {
+    modules: {
+      toolbar: quillToolbarOptions
+    },
+    theme: 'snow'
+  }); // Populate hidden textarea on change
+
+  quill.on('text-change', function () {
+    var message = document.querySelector('#message');
+    message.innerHTML = quill.root.innerHTML;
+  });
+}
 
 /***/ }),
 

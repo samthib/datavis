@@ -4,6 +4,6 @@
  * @param  {string} toId        The id of the textarea to fill
  * @return {void}
  */
-function codeToTextarea(fromElement, toId) {
+window.codeToTextarea = function(fromElement, toId) {
   document.getElementById(toId).value = fromElement.innerText;
 }

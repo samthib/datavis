@@ -49,7 +49,7 @@
       <div class="form-group col-md-8">
         <label for="message">Message</label>
         <textarea id="message" name="message" hidden></textarea>
-        <div id="editor" style="height: 250px;" oninput="codeToTextarea(this, 'message');"></div>
+        <div id="editor" class="form-control" style="height: 250px;"></div>
       </div><!-- Message -->
 
       <input type="number" name="sent" value="1" hidden>
@@ -57,7 +57,7 @@
     </div><!--Form inputs upper row -->
   </form>
 
-  @include('admin.messages.tools.editor-toolbar')
+  {{-- @include('admin.messages.tools.editor-toolbar') --}}
 
 
 @endsection
