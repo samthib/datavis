@@ -2,17 +2,8 @@
 
 @section('admin-content')
 
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Libraries</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <a class="btn btn-success" href="{!! route('admin.libraries.create') !!}" role="button"><span data-feather="plus-circle"></span> New Library</a>
-      </div>
-    </div>
-  </div>
+  <x-admin.header.index-component name="{{ __('Library') }}" plural-name="{{ __('Libraries') }}" :create-link="route('admin.libraries.create')" />
 
-
-  <h3 class="text-center">Libraries list</h3>
   <div class="table-responsive">
     <table class="table table-dark table-bordered table-striped table-hover table-responsive-md">
       <thead>
@@ -30,52 +21,19 @@
         @foreach ($libraries as $key => $library)
           <tr>
             <td class="align-middle"><b>{{ $library->id }}</b></td>
-            <td class="align-middle">{{ $library->name }}</td>
-            <td class="align-middle">{{ $library->version }}</td>
-            <td class="align-middle">{{ (strlen($library->description) > 15) ? substr($library->description, 0, 15).' ...' : $library->description }}</td>
-            <td class="align-middle"><a href="{{ $library->link }}" target="_blank">{{ $library->link }}</a></td>
+            <td class="align-middle">{{ Str::limit($library->name, 20) }}</td>
+            <td class="align-middle">{{ Str::limit($library->version, 20) }}</td>
+            <td class="align-middle">{{ Str::limit($library->description, 20) }}</td>
+            <td class="align-middle"><a href="{{ $library->link }}" target="_blank">{{ Str::limit($library->link, 60) }}</a></td>
             <td class="align-middle">{{ $library->created_at->format('Y-m-d h:i') }}</td>
             <td class="text-center">
-              <a class="btn btn-warning" href="{!! route('admin.libraries.show', $library) !!}" role="button">
-                <span data-feather="eye"></span>
-              </a>
-              <a class="btn btn-primary" href="{!! route('admin.libraries.edit', $library) !!}" role="button">
-                <span data-feather="edit"></span>
-              </a>
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$key}}">
-                <span data-feather="trash"></span>
-              </button>
+              <x-admin.table.button-show-component :show-link="route('admin.libraries.show', $library)" />
+              <x-admin.table.button-edit-component :edit-link="route('admin.libraries.edit', $library)" />
+              <x-admin.table.button-delete-component :key="$key" />
             </td>
           </tr>
 
-
-          <!-- Modal -->
-          <div class="modal fade" id="deleteModal-{{$key}}" tabindex="-1" aria-labelledby="deleteModal-{{$key}}" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="deleteModal-{{$key}}">Delete library</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  Are you sure ?
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
-                  <form action="{!! route('admin.libraries.destroy', $library) !!}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">
-                      DELETE
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div><!-- Modal -->
+          <x-admin.table.modal-delete-component :key="$key" name="{{ __('library') }}" :destroy-link="route('admin.libraries.destroy', $library)" />
 
         @endforeach
       </tbody>

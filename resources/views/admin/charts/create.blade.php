@@ -87,7 +87,7 @@
 
 
   <!-- Row editor -->
-  <div class="row editor" id="editor">
+  <div class="row editor" id="charts-editor">
 
     <!-- JS Editor -->
     <div class="form-group col-md-6">

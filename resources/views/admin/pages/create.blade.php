@@ -42,8 +42,8 @@
 
       <!-- Site icon -->
       <div class="form-group col-md-6">
-        <label for="icon">Icon (Font awesome)</label>
-        <input id="icon" name="icon" type="text" class="form-control">
+        <label for="icon">Icon <a href="https://fontawesome.com/v4.7/" target="_blank">Font awesome <span data-feather="external-link"></span></a></label>
+        <input id="icon" name="icon" type="text" class="form-control" placeholder="fa fa-user">
       </div><!-- Site icon -->
 
       <!-- Content -->

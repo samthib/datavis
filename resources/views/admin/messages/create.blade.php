@@ -49,7 +49,7 @@
       <div class="form-group col-md-8">
         <label for="message">Message</label>
         <textarea id="message" name="message" hidden>{!! old('message') !!}</textarea>
-        <div id="editor" class="form-control" style="height: 250px;">{!! old('message') !!}</div>
+        <div id="quill-editor" class="form-control" style="height: 250px;">{!! old('message') !!}</div>
       </div><!-- Message -->
 
       <input type="number" name="sent" value="1" hidden>

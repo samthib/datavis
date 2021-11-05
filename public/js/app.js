@@ -30692,13 +30692,13 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* Personnal JS */
 
 
-__webpack_require__(/*! ./graph2pdf */ "./resources/js/graph2pdf.js");
+__webpack_require__(/*! ./graph-to-pdf */ "./resources/js/graph-to-pdf.js");
 
-__webpack_require__(/*! ./quillToolbar */ "./resources/js/quillToolbar.js");
+__webpack_require__(/*! ./quill-toolbar */ "./resources/js/quill-toolbar.js");
 
 __webpack_require__(/*! ./editors */ "./resources/js/editors.js");
 
-__webpack_require__(/*! ./visitsChart */ "./resources/js/visitsChart.js");
+__webpack_require__(/*! ./visits-chart */ "./resources/js/visits-chart.js");
 
 /***/ }),
 
@@ -30753,10 +30753,10 @@ window.codeToTextarea = function (fromElement, toId) {
 
 /***/ }),
 
-/***/ "./resources/js/graph2pdf.js":
-/*!***********************************!*\
-  !*** ./resources/js/graph2pdf.js ***!
-  \***********************************/
+/***/ "./resources/js/graph-to-pdf.js":
+/*!**************************************!*\
+  !*** ./resources/js/graph-to-pdf.js ***!
+  \**************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -30898,15 +30898,15 @@ window.generatePDF = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./resources/js/quillToolbar.js":
-/*!**************************************!*\
-  !*** ./resources/js/quillToolbar.js ***!
-  \**************************************/
+/***/ "./resources/js/quill-toolbar.js":
+/*!***************************************!*\
+  !*** ./resources/js/quill-toolbar.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// Only where #editor exists
-if (document.querySelector('#editor')) {
+// Only where #quill-editor exists
+if (document.querySelector('#quill-editor')) {
   /**
    * Initialize Quill editor
    * @type {Array}
@@ -30955,7 +30955,7 @@ if (document.querySelector('#editor')) {
   * @type {Quill}
   */
 
-  var quill = new Quill('#editor', {
+  var quill = new Quill('#quill-editor', {
     modules: {
       toolbar: quillToolbarOptions
     },
@@ -30970,44 +30970,55 @@ if (document.querySelector('#editor')) {
 
 /***/ }),
 
-/***/ "./resources/js/visitsChart.js":
-/*!*************************************!*\
-  !*** ./resources/js/visitsChart.js ***!
-  \*************************************/
+/***/ "./resources/js/visits-chart.js":
+/*!**************************************!*\
+  !*** ./resources/js/visits-chart.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
 // Only where #visitsChart exists
 if (document.getElementById('visitsChart')) {
-  // Graphs
-  var ctx = document.getElementById('visitsChart'); // eslint-disable-next-line no-unused-vars
-
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [{
-        data: counts,
-        lineTension: 0,
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        borderWidth: 4,
-        pointBackgroundColor: '##454d55'
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
+  // Setup
+  var data = {
+    labels: dates,
+    datasets: [{
+      label: "# of landing pages loaded",
+      data: counts,
+      lineTension: 0,
+      backgroundColor: '#transparent',
+      borderColor: '#007bff',
+      borderWidth: 4,
+      pointBackgroundColor: '#454d55'
+    }]
+  };
+  var options = {
+    responsive: true,
+    plugins: {
       legend: {
-        display: false
+        position: 'top'
+      },
+      title: {
+        display: false,
+        text: 'Visits counter',
+        color: '#007bff',
+        font: {
+          family: 'Segoe UI',
+          size: 30,
+          style: 'normal',
+          lineHeight: 1.5
+        }
       }
     }
-  });
+  }; // Config
+
+  var config = {
+    type: 'line',
+    data: data,
+    options: options
+  }; // Chart instantiation
+
+  var myChart = new Chart(document.getElementById('visitsChart'), config);
 }
 
 /***/ }),

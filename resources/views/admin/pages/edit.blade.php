@@ -2,17 +2,7 @@
 
 @section('admin-content')
 
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Pages</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <a class="btn btn-secondary" href="{!! route('admin.pages.index') !!}" role="button"><span data-feather="list"></span> Pages list</a>
-      </div>
-    </div>
-  </div>
-
-  <h3 class="text-center">{{ $page->title }}</h3>
-
+  <x-admin.header.show-component name="{{ __('Page') }}" plural-name="{{ __('Pages') }}" :title="$page->title" :index-link="route('admin.pages.index')" :create-link="route('admin.pages.create')" />
 
   <form id="form" action="{{ route('admin.pages.update', $page) }}" method="post" enctype="multipart/form-data">
     @csrf
@@ -42,8 +32,8 @@
 
       <!-- Site icon -->
       <div class="form-group col-md-6">
-        <label for="icon">Icon <a href="https://fontawesome.com/">Font awesome <span data-feather="external-link"></span></a></label>
-        <input id="icon" name="icon" type="text" class="form-control" value="{{ $page->icon }}">
+        <label for="icon">Icon <a href="https://fontawesome.com/v4.7/" target="_blank">Font awesome <span data-feather="external-link"></span></a></label>
+        <input id="icon" name="icon" type="text" class="form-control" value="{{ $page->icon }}" placeholder="fa fa-user">
       </div><!-- Site icon -->
 
       <!-- Content -->

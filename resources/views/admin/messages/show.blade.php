@@ -2,24 +2,10 @@
 
 @section('admin-content')
 
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Messages</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <a class="btn btn-secondary" href="{!! route('admin.messages.inbox.index') !!}" role="button"><span data-feather="list"></span> Messages list</a>
-      </div>
-      <div class="btn-group mr-2">
-        <a class="btn btn-success" href="{!! route('admin.messages.create') !!}" role="button"><span data-feather="plus-circle"></span> New Message</a>
-      </div>
-    </div>
-  </div>
-
-  <h3 class="text-center">{{ $message->name." - ".$message->email }}</h3>
-
+  <x-admin.header.show-component name="{{ __('Message') }}" plural-name="{{ __('Messages') }}" :title="$message->name.' - '.$message->email" :index-link="route('admin.messages.inbox.index')" :create-link="route('admin.messages.create')" />
 
   <form id="form" action="{{ route('admin.messages.store') }}" method="post">
     @csrf
-
     <!--Form inputs upper row -->
     <div class="row">
 

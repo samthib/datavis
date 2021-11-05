@@ -2,9 +2,9 @@
 
 @section('content')
 
-  {{-- Email --}}
+  <!-- Email -->
   <div class="d-md-flex flex-md-equal w-100 vh-100 text-white">
-    {{-- Email part --}}
+    <!-- Email part -->
     <div class="bg-dark py-1 pt-md-3 pb-md-5 text-center overflow-hidden">
       <h2 class="display-5 my-5 py-3">Contactez moi</h2>
       <div class="mx-auto w-50">
@@ -52,7 +52,7 @@
                   </form>
 
               </div>
-            </div>{{-- Email part --}}
-          </div>{{-- Email --}}
+            </div><!-- Email part -->
+          </div><!-- Email -->
 
         @endsection

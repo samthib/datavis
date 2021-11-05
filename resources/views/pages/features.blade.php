@@ -2,15 +2,14 @@
 
 @section('content')
 
-  {{-- Services --}}
+  <!-- Services -->
   <div class="d-md-flex flex-md-equal w-100 vh-100 text-white">
-    {{-- Services part --}}
+    <!-- Services part -->
     <div class="bg-dark py-1 pt-md-3 pb-md-5 text-center overflow-hidden">
       <h2 class="display-5 my-5 py-3">Services</h2>
       <div class="mx-auto w-75 row">
 
         @foreach ($pages as $key => $page)
-
           <div class="col-md-6 col-lg-4 mb-4 feature-card">
             <div class="card bg-transparent shadow rounded">
               <div class="card-body">
@@ -21,11 +20,10 @@
               </div>
             </div>
           </div>
-
         @endforeach
 
       </div>
-    </div>{{-- Services part --}}
-  </div>{{-- Services --}}
+    </div><!-- Services part -->
+  </div><!-- Services -->
 
 @endsection
