@@ -162,8 +162,8 @@
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 
         {{-- Alert box --}}
-        <div class="d-flex justify-content-end m-1">
-          @include('layouts.tools.messages')
+        <div class="d-flex flex-column align-items-end m-1">
+          @include('layouts.partials.alerts')
         </div>
 
         @yield('admin-content')

@@ -4,4 +4,4 @@ require('./bootstrap');
 require('./graph2pdf');
 require('./quillToolbar');
 require('./editors');
-require('./dashboard');
+require('./visitsChart');

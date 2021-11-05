@@ -21,13 +21,13 @@
   <!-- Custom styles for this template -->
   <link href="https://getbootstrap.com/docs/4.5/examples/product/product.css" rel="stylesheet">
 
-  {{-- Dynamics custom styles --}}
-  @include('layouts.tools.styles')
+  <!-- Dynamics custom styles -->
+  @include('layouts.partials.styles')
 
   <!-- Font awesome CDN  -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-  {{-- Highlight.js CDN --}}
+  <!-- Highlight.js CDN -->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/monokai-sublime.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>

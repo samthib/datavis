@@ -39,9 +39,6 @@
               <a class="btn btn-warning" href="{!! route('admin.messages.show', $message) !!}" role="button">
                 <span data-feather="eye"></span>
               </a>
-              {{-- <a class="btn btn-primary" href="{!! route('admin.messages.edit', $message) !!}" role="button">
-                <span data-feather="edit"></span>
-              </a> --}}
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{$key}}">
                 <span data-feather="trash"></span>

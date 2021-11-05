@@ -30698,7 +30698,7 @@ __webpack_require__(/*! ./quillToolbar */ "./resources/js/quillToolbar.js");
 
 __webpack_require__(/*! ./editors */ "./resources/js/editors.js");
 
-__webpack_require__(/*! ./dashboard */ "./resources/js/dashboard.js");
+__webpack_require__(/*! ./visitsChart */ "./resources/js/visitsChart.js");
 
 /***/ }),
 
@@ -30731,48 +30731,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/dashboard.js":
-/*!***********************************!*\
-  !*** ./resources/js/dashboard.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// Only where #visitsChart exists
-if (document.getElementById('visitsChart')) {
-  // Graphs
-  var ctx = document.getElementById('visitsChart'); // eslint-disable-next-line no-unused-vars
-
-  var myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: dates,
-      datasets: [{
-        data: counts,
-        lineTension: 0,
-        backgroundColor: 'transparent',
-        borderColor: '#007bff',
-        borderWidth: 4,
-        pointBackgroundColor: '##454d55'
-      }]
-    },
-    options: {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: false
-          }
-        }]
-      },
-      legend: {
-        display: false
-      }
-    }
-  });
-}
 
 /***/ }),
 
@@ -30947,55 +30905,56 @@ window.generatePDF = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-/**
- * Initialize Quill editor
- * @type {Array}
- */
-var quillToolbarOptions = [['bold', 'italic', 'underline', 'strike'], // toggled buttons
-['blockquote', 'code-block'], [{
-  'header': 1
-}, {
-  'header': 2
-}], // custom button values
-[{
-  'list': 'ordered'
-}, {
-  'list': 'bullet'
-}], [{
-  'script': 'sub'
-}, {
-  'script': 'super'
-}], // superscript/subscript
-[{
-  'indent': '-1'
-}, {
-  'indent': '+1'
-}], // outdent/indent
-[{
-  'direction': 'rtl'
-}], // text direction
-[{
-  'size': ['small', false, 'large', 'huge']
-}], // custom dropdown
-[{
-  'header': [1, 2, 3, 4, 5, 6, false]
-}], [{
-  'color': []
-}, {
-  'background': []
-}], // dropdown with defaults from theme
-[{
-  'font': []
-}], [{
-  'align': []
-}], ['clean'] // remove formatting button
-]; // Only where #editor exists
-
+// Only where #editor exists
 if (document.querySelector('#editor')) {
+  /**
+   * Initialize Quill editor
+   * @type {Array}
+   */
+  var quillToolbarOptions = [['bold', 'italic', 'underline', 'strike'], // toggled buttons
+  ['blockquote', 'code-block'], [{
+    'header': 1
+  }, {
+    'header': 2
+  }], // custom button values
+  [{
+    'list': 'ordered'
+  }, {
+    'list': 'bullet'
+  }], [{
+    'script': 'sub'
+  }, {
+    'script': 'super'
+  }], // superscript/subscript
+  [{
+    'indent': '-1'
+  }, {
+    'indent': '+1'
+  }], // outdent/indent
+  [{
+    'direction': 'rtl'
+  }], // text direction
+  [{
+    'size': ['small', false, 'large', 'huge']
+  }], // custom dropdown
+  [{
+    'header': [1, 2, 3, 4, 5, 6, false]
+  }], [{
+    'color': []
+  }, {
+    'background': []
+  }], // dropdown with defaults from theme
+  [{
+    'font': []
+  }], [{
+    'align': []
+  }], ['clean'] // remove formatting button
+  ];
   /**
   * Quill object
   * @type {Quill}
   */
+
   var quill = new Quill('#editor', {
     modules: {
       toolbar: quillToolbarOptions
@@ -31006,6 +30965,48 @@ if (document.querySelector('#editor')) {
   quill.on('text-change', function () {
     var message = document.querySelector('#message');
     message.innerHTML = quill.root.innerHTML;
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/visitsChart.js":
+/*!*************************************!*\
+  !*** ./resources/js/visitsChart.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Only where #visitsChart exists
+if (document.getElementById('visitsChart')) {
+  // Graphs
+  var ctx = document.getElementById('visitsChart'); // eslint-disable-next-line no-unused-vars
+
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dates,
+      datasets: [{
+        data: counts,
+        lineTension: 0,
+        backgroundColor: 'transparent',
+        borderColor: '#007bff',
+        borderWidth: 4,
+        pointBackgroundColor: '##454d55'
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      },
+      legend: {
+        display: false
+      }
+    }
   });
 }
 

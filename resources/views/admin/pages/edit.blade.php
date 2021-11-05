@@ -42,7 +42,7 @@
 
       <!-- Site icon -->
       <div class="form-group col-md-6">
-        <label for="icon">Icon (Font awesome)</label>
+        <label for="icon">Icon <a href="https://fontawesome.com/">Font awesome <span data-feather="external-link"></span></a></label>
         <input id="icon" name="icon" type="text" class="form-control" value="{{ $page->icon }}">
       </div><!-- Site icon -->
 

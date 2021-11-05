@@ -27,7 +27,7 @@ class MessageRules extends FormRequest
           'name' => 'required|max:255',
           'email' => 'required|email|max:255',
           'subject' => 'required|max:255',
-          'message' => 'max:2500',
+          'message' => 'required|max:2500',
           'sent' => 'nullable|integer',
         ];
     }
