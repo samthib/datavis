@@ -64,6 +64,8 @@ class MessageController extends Controller
 
       Message::create($validated);
 
+      // $validated['imageLink'] = \App\Models\Design::first('logo');
+      // dd($validated['imageLink']);
       Mail::to($validated['email'])->send(new SendEmail($validated));
 
       return redirect()->route('admin.messages.sent.index')->with('message', 'Message envoyé');

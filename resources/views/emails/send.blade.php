@@ -1,4 +1,4 @@
-@component('mail::message')
+{{-- @component('mail::message')
 # Mail from {{ $data['name'] }}
 ({{ $data['email'] }})
 
@@ -14,4 +14,17 @@ Button Text
 
 Thanks,<br>
 {{ config('app.name') }}
-@endcomponent
+@endcomponent --}}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+  <div class="test" style="margin: 0;padding: 0;background-color: #013c59;" width="100%">
+    abcdefgh
+  </div>
+</body>
+</html>
