@@ -201,6 +201,38 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+
+    module.exports["default"] = module.exports, module.exports.__esModule = true;
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/regenerator/index.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
@@ -12067,7 +12099,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShadingPattern", function() { return B; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TilingPattern", function() { return E; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "jsPDF", function() { return M; });
-/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/jspdf/node_modules/@babel/runtime/helpers/typeof.js");
+/* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
 /* harmony import */ var _babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_typeof__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var fflate__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! fflate */ "./node_modules/fflate/esm/browser.js");
 /** @license
@@ -12404,38 +12436,6 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 //# sourceMappingURL=jspdf.es.min.js.map
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
-
-/***/ }),
-
-/***/ "./node_modules/jspdf/node_modules/@babel/runtime/helpers/typeof.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/jspdf/node_modules/@babel/runtime/helpers/typeof.js ***!
-  \**************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-function _typeof(obj) {
-  "@babel/helpers - typeof";
-
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    module.exports = _typeof = function _typeof(obj) {
-      return typeof obj;
-    };
-
-    module.exports["default"] = module.exports, module.exports.__esModule = true;
-  } else {
-    module.exports = _typeof = function _typeof(obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-
-    module.exports["default"] = module.exports, module.exports.__esModule = true;
-  }
-
-  return _typeof(obj);
-}
-
-module.exports = _typeof;
-module.exports["default"] = module.exports, module.exports.__esModule = true;
 
 /***/ }),
 
@@ -29942,9 +29942,9 @@ var runtime = (function (exports) {
   // This is a polyfill for %IteratorPrototype% for environments that
   // don't natively support it.
   var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
+  define(IteratorPrototype, iteratorSymbol, function () {
     return this;
-  };
+  });
 
   var getProto = Object.getPrototypeOf;
   var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
@@ -29958,8 +29958,9 @@ var runtime = (function (exports) {
 
   var Gp = GeneratorFunctionPrototype.prototype =
     Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunction.prototype = GeneratorFunctionPrototype;
+  define(Gp, "constructor", GeneratorFunctionPrototype);
+  define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
   GeneratorFunction.displayName = define(
     GeneratorFunctionPrototype,
     toStringTagSymbol,
@@ -30073,9 +30074,9 @@ var runtime = (function (exports) {
   }
 
   defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+  define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
     return this;
-  };
+  });
   exports.AsyncIterator = AsyncIterator;
 
   // Note that simple async functions are implemented on top of
@@ -30268,13 +30269,13 @@ var runtime = (function (exports) {
   // iterator prototype chain incorrectly implement this, causing the Generator
   // object to not be returned from this call. This ensures that doesn't happen.
   // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
+  define(Gp, iteratorSymbol, function() {
     return this;
-  };
+  });
 
-  Gp.toString = function() {
+  define(Gp, "toString", function() {
     return "[object Generator]";
-  };
+  });
 
   function pushTryEntry(locs) {
     var entry = { tryLoc: locs[0] };
@@ -30593,14 +30594,19 @@ try {
 } catch (accidentalStrictMode) {
   // This module should not be running in strict mode, so the above
   // assignment should always work unless something is misconfigured. Just
-  // in case runtime.js accidentally runs in strict mode, we can escape
+  // in case runtime.js accidentally runs in strict mode, in modern engines
+  // we can explicitly access globalThis. In older engines we can escape
   // strict mode using a global Function call. This could conceivably fail
   // if a Content Security Policy forbids using Function, but in that case
   // the proper solution is to fix the accidental strict mode problem. If
   // you've misconfigured your bundler to force strict mode and applied a
   // CSP to forbid Function, and you're not willing to fix either of those
   // problems, please detail your unique predicament in a GitHub issue.
-  Function("r", "regeneratorRuntime = r")(runtime);
+  if (typeof globalThis === "object") {
+    globalThis.regeneratorRuntime = runtime;
+  } else {
+    Function("r", "regeneratorRuntime = r")(runtime);
+  }
 }
 
 
@@ -30681,6 +30687,42 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./resources/js/ace.js":
+/*!*****************************!*\
+  !*** ./resources/js/ace.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Only where #modifyCodeJS exists
+if (document.querySelector('#modifyCodeJS')) {
+  ace.config.set("basePath", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/"); // Load by base path
+  // ace.config.setModuleUrl("ace/theme/monokai", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/theme-monokai.min.js");// Load by module
+  // ace.config.setModuleUrl("ace/mode/javascript", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/mode-javascript.min.js");// Load by module
+  // trigger extension
+  // ace.require("https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ext-language_tools.min.js");
+  // Define options
+
+  var options = {
+    theme: "ace/theme/monokai",
+    enableBasicAutocompletion: true,
+    enableLiveAutocompletion: true,
+    enableSnippets: true,
+    copyWithEmptySelection: true
+  }; // Initialize and pass options to ace.edit
+
+  var editorJS = ace.edit("modifyCodeJS", options);
+  var editorCSS = ace.edit("modifyCodeCSS", options); // Set the mode to use
+
+  editorJS.session.setMode("ace/mode/javascript");
+  editorCSS.session.setMode("ace/mode/css");
+  editorJS.session.on('change', function (delta) {
+    document.querySelector("#textareaJS").value = delta.lines.join('\n'); // document.querySelector("#textareaJS").value = editorJS.getValue();
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -30699,6 +30741,8 @@ __webpack_require__(/*! ./quill-toolbar */ "./resources/js/quill-toolbar.js");
 __webpack_require__(/*! ./editors */ "./resources/js/editors.js");
 
 __webpack_require__(/*! ./visits-chart */ "./resources/js/visits-chart.js");
+
+__webpack_require__(/*! ./ace */ "./resources/js/ace.js");
 
 /***/ }),
 
@@ -30843,11 +30887,13 @@ window.generatePDF = /*#__PURE__*/function () {
                         // Create new image based on the graphic
                         image[i] = canvas.toDataURL('image/jpeg'); //Add image and title
 
+                        //Add image and title
                         doc.addImage(image[i], "JPEG", positionX, positionY, widthDoc, heightDoc);
                         doc.text(title[i], doc.internal.pageSize.getWidth() / 2, 20, {
                           align: "center"
                         }); // Add new page if necessary
 
+                        // Add new page if necessary
                         if (i < length - 1) {
                           doc.addPage();
                         }
@@ -30978,7 +31024,7 @@ if (document.querySelector('#quill-editor')) {
 /***/ (function(module, exports) {
 
 // Only where #visitsChart exists
-if (document.getElementById('visitsChart')) {
+if (document.querySelector('#visitsChart')) {
   // Setup
   var data = {
     labels: dates,

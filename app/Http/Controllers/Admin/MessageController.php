@@ -25,7 +25,7 @@ class MessageController extends Controller
                           ->orderBy('id', 'desc')
                           ->simplePaginate(20);
 
-      return view('admin.messages.index', compact('messages'));
+      return view('admin.messages.sent.index', compact('messages'));
     }
 
     /**
@@ -39,7 +39,7 @@ class MessageController extends Controller
                           ->orderBy('id', 'desc')
                           ->simplePaginate(20);
 
-      return view('admin.messages.index', compact('messages'));
+      return view('admin.messages.sent.index', compact('messages'));
     }
 
     /**
@@ -77,10 +77,14 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function show(Message $message)
-    {
-      return view('admin.messages.show', compact('message'));
-    }
+     public function show(Message $message)
+     {
+       if ($message->sent == 0) {
+         return view('admin.messages.inbox.show', compact('message'));
+       } elseif ($message->sent != 0) {
+         return view('admin.messages.sent.show', compact('message'));
+       }
+     }
 
     /**
      * Show the form for editing the specified resource.

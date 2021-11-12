@@ -1,5 +1,5 @@
 // Only where #visitsChart exists
-if (document.getElementById('visitsChart')) {
+if (document.querySelector('#visitsChart')) {
   // Setup
   const data = {
     labels: dates,
