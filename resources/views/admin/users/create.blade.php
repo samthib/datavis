@@ -2,18 +2,9 @@
 
 @section('admin-content')
 
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Libraries</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <a class="btn btn-secondary" href="{!! route('admin.libraries.index') !!}" role="button"><span data-feather="list"></span> Libraries list</a>
-      </div>
-    </div>
-  </div>
+  <x-admin.header.create-component plural-name="{{ __('Users') }}" title="{{ __('New User') }}" :index-link="route('admin.users.index')" />
 
-  <h3 class="text-center">{{ __('New Library') }}</h3>
-
-
+{{--
   <form id="form" action="{{ route('admin.libraries.store') }}" method="post">
     @csrf
 
@@ -54,7 +45,7 @@
 
     </div><!--Form inputs upper row -->
 
-  </form>
+  </form> --}}
 
 
 @endsection

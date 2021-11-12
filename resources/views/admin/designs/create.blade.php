@@ -2,16 +2,7 @@
 
 @section('admin-content')
 
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Designs</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <a class="btn btn-secondary" href="{!! route('admin.designs.index') !!}" role="button"><span data-feather="list"></span> Designs list</a>
-      </div>
-    </div>
-  </div>
-
-  <h3 class="text-center">{{ __('New design') }}</h3>
+  <x-admin.header.create-component plural-name="{{ __('Designs') }}" title="{{ __('New Design') }}" :index-link="route('admin.designs.index')" />
 
 
   <form id="form" action="{{ route('admin.designs.store') }}" method="post" enctype="multipart/form-data">

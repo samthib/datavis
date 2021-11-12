@@ -2,7 +2,7 @@
 
 @section('admin-content')
 
-  <x-admin.header.create-component plural-name="{{ __('Charts') }}" title="{{ __('New chart') }}" :index-link="route('admin.charts.index')" />
+  <x-admin.header.create-component plural-name="{{ __('Charts') }}" title="{{ __('New Chart') }}" :index-link="route('admin.charts.index')" />
 
 
   <form id="form" action="{{ route('admin.charts.store') }}" method="post">
