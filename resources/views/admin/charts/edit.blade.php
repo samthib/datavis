@@ -94,6 +94,22 @@
       <!-- JS Editor -->
       <div class="form-group col-md-6">
         <P>Javascript</P>
+        <pre id="modifyCodeJS" class="editors rounded">
+          {{ $chart->js ?? '// Write your code ...' }}
+        </pre>
+      </div><!-- JS Editor -->
+
+      <!-- CSS Editor -->
+      <div class="form-group col-md-6">
+        <P>CSS</P>
+        <pre id="modifyCodeCSS" class="editors rounded">
+          {{ $chart->css ?? "/* Write your code ... */" }}
+        </pre>
+      </div><!-- CSS Editor -->
+
+      {{-- <!-- JS Editor -->
+      <div class="form-group col-md-6">
+        <P>Javascript</P>
         <pre id="modifyCodeJS" class="editors rounded"><code class="javascript h-100" contenteditable="true" oninput="codeToTextarea(this, 'textareaJS')">{{ $chart->js ?? '// Write your code ...' }}</code></pre>
       </div><!-- JS Editor -->
 
@@ -101,7 +117,7 @@
       <div class="form-group col-md-6">
         <P>CSS</P>
         <pre id="modifyCodeCSS" class="editors rounded"><code class="css h-100" contenteditable="true" oninput="codeToTextarea(this, 'textareaCSS')">{{ $chart->css ?? "/* Write your code ... */" }}</code></pre>
-      </div><!-- CSS Editor -->
+      </div><!-- CSS Editor --> --}}
 
       <!-- Undisplayed <textarea>, will be filled with the content of the correponding <div>  -->
       <textarea id="textareaJS" class="textInput" name="js" hidden>{{ $chart->js }}</textarea>

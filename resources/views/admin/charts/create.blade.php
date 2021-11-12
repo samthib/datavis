@@ -2,16 +2,7 @@
 
 @section('admin-content')
 
-  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Charts</h1>
-    <div class="btn-toolbar mb-2 mb-md-0">
-      <div class="btn-group mr-2">
-        <a class="btn btn-secondary" href="{!! route('admin.charts.index') !!}" role="button"><span data-feather="list"></span> Charts list</a>
-      </div>
-    </div>
-  </div>
-
-  <h3 class="text-center">{{ __('New chart') }}</h3>
+  <x-admin.header.create-component plural-name="{{ __('Charts') }}" title="{{ __('New chart') }}" :index-link="route('admin.charts.index')" />
 
 
   <form id="form" action="{{ route('admin.charts.store') }}" method="post">
@@ -89,11 +80,10 @@
   <!-- Row editor -->
   <div class="row editor" id="charts-editor">
 
-
     <!-- JS Editor -->
     <div class="form-group col-md-6">
       <P>Javascript</P>
-      <pre id="modifyCodeJS" class="editors rounded" oninput="codeToTextarea(this, 'textareaJS');">
+      <pre id="modifyCodeJS" class="editors rounded">
         {{ "// Write your code ..." }}
       </pre>
     </div><!-- JS Editor -->
@@ -101,11 +91,10 @@
     <!-- CSS Editor -->
     <div class="form-group col-md-6">
       <P>CSS</P>
-      <pre id="modifyCodeCSS" class="editors rounded" oninput="codeToTextarea(this, 'textareaJS');">
+      <pre id="modifyCodeCSS" class="editors rounded">
         {{ "/* Write your code ... */" }}
       </pre>
     </div><!-- CSS Editor -->
-
 
     {{-- <!-- JS Editor -->
     <div class="form-group col-md-6">

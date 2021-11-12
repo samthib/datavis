@@ -2,7 +2,7 @@
 
 @section('admin-content')
 
-  <x-admin.header.show-component name="{{ __('Libraries') }}" plural-name="{{ __('Librariess') }}" :title="$library->name.' - '.$library->version" :index-link="route('admin.libraries.index')" :create-link="route('admin.libraries.create')" />
+  <x-admin.header.show-component name="{{ __('Library') }}" plural-name="{{ __('Libraries') }}" :title="$library->name.' - '.$library->version" :index-link="route('admin.libraries.index')" :create-link="route('admin.libraries.create')" />
 
   <form id="form" action="{{ route('admin.libraries.store') }}" method="post">
     @csrf
