@@ -35755,44 +35755,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // ace.config.set("basePath", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/");// Load by base path
-// ace.config.setModuleUrl("ace/theme/monokai", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/theme-monokai.min.js");// Load by module
-// ace.config.setModuleUrl("ace/mode/javascript", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/mode-javascript.min.js");// Load by module
-// trigger extension
-// ace.require("https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ext-language_tools.min.js");
-// Define options
 
-var options = {
-  theme: "ace/theme/monokai",
-  enableBasicAutocompletion: true,
-  enableLiveAutocompletion: true,
-  enableSnippets: true,
-  copyWithEmptySelection: true,
-  enableEmmet: true
-}; // Only where #modifyCodeJS exists
+/**
+* Write the code of an element to an other
+* @param  {String} fromID               id of element with the code
+* @param  {String} toID                 id of the element to push the code
+* @param  {String} mode                 mode or Ace editor: javascript, css, ...
+* @return {Void}
+*/
 
-if (document.querySelector('#modifyCodeJS')) {
-  var editor = ace.edit("modifyCodeJS", options); // Initialize and pass options to ace.edit
-
-  editor.session.setMode("ace/mode/javascript"); // Set the mode to use
-
+window.editorToTextarea = function (fromID, toID, mode) {
+  // Initialize and pass options to ace.edit
+  var editor = ace.edit(fromID, {
+    mode: "ace/mode/" + mode,
+    theme: "ace/theme/monokai",
+    enableBasicAutocompletion: true,
+    enableLiveAutocompletion: true,
+    enableSnippets: true,
+    copyWithEmptySelection: true,
+    enableEmmet: true
+  });
   editor.session.on('change', function (delta) {
-    document.querySelector("#textareaJS").value = editor.getValue(); // document.querySelector("#textareaJS").value = delta.lines.join('\n');
+    document.getElementById(toID).value = editor.getValue();
   });
-} // Only where #modifyCodeCSS exists
-
-
-if (document.querySelector('#modifyCodeCSS')) {
-  var _editor = ace.edit("modifyCodeCSS", options); // Initialize and pass options to ace.edit
-
-
-  _editor.session.setMode("ace/mode/css"); // Set the mode to use
-
-
-  _editor.session.on('change', function (delta) {
-    document.querySelector("#textareaCSS").value = _editor.getValue(); // document.querySelector("#textareaCSS").value = delta.lines.join('\n');
-  });
-}
+};
 
 /***/ }),
 

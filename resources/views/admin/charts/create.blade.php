@@ -49,72 +49,65 @@
         <label for="libraries[]">Libraries</label>
         <select id="libraries[]" name="libraries[]" class="custom-select" size="5" multiple required>
           @foreach ($libraries as $key => $library)
-          <option value="{{ $library->id }}">{{ $library->name." - ".$library->version }}</option>
-        @endforeach
-      </select>
-    </div><!-- Library select -->
+            <option value="{{ $library->id }}">{{ $library->name." - ".$library->version }}</option>
+          @endforeach
+        </select>
+      </div><!-- Library select -->
 
-    <!-- Data select -->
-    <div class="form-group col-md-4">
-      <label for="datas[]">Datas</label>
-      <select id="datas[]" name="datas[]" class="custom-select" size="5" multiple>
-        @foreach ($datas as $key => $data)
-          <option value="{{ $data->id }}">{{ $data->name." - ".$data->type }}</option>
-        @endforeach
-      </select>
-    </div><!-- Data select -->
+      <!-- Data select -->
+      <div class="form-group col-md-4">
+        <label for="datas[]">Datas</label>
+        <select id="datas[]" name="datas[]" class="custom-select" size="5" multiple>
+          @foreach ($datas as $key => $data)
+            <option value="{{ $data->id }}">{{ $data->name." - ".$data->type }}</option>
+          @endforeach
+        </select>
+      </div><!-- Data select -->
 
-    <!-- Data display -->
-    <div class="form-group col-md-8">
-      <label for="files[]">Links</label>
-      <textarea id="files" class="form-control" rows="5">
-        @foreach ($datas as $key => $data)
-          {{ url('storage/'.$data->file) }}
-        @endforeach
-      </textarea>
-    </div><!-- Data display -->
+      <!-- Data display -->
+      <div class="form-group col-md-8">
+        <label for="files[]">Links</label>
+        <textarea id="files" class="form-control" rows="5">
+          @foreach ($datas as $key => $data)
+            {{ url('storage/'.$data->file) }}
+          @endforeach
+        </textarea>
+      </div><!-- Data display -->
 
-  </div><!--Form inputs upper row -->
-
-
-  <!-- Row editor -->
-  <div class="row editor" id="charts-editor">
-
-    <!-- JS Editor -->
-    <div class="form-group col-md-6">
-      <P>Javascript</P>
-      <pre id="modifyCodeJS" class="editors rounded">
-        {{ "// Write your code ..." }}
-      </pre>
-    </div><!-- JS Editor -->
-
-    <!-- CSS Editor -->
-    <div class="form-group col-md-6">
-      <P>CSS</P>
-      <pre id="modifyCodeCSS" class="editors rounded">
-        {{ "/* Write your code ... */" }}
-      </pre>
-    </div><!-- CSS Editor -->
-
-    {{-- <!-- JS Editor -->
-    <div class="form-group col-md-6">
-      <P>Javascript</P>
-      <pre id="modifyCodeJS" class="editors rounded"><code class="javascript h-100" contenteditable="true" oninput="codeToTextarea(this, 'textareaJS');">{{ "// Write your code ..." }}</code></pre>
-    </div><!-- JS Editor -->
-
-    <!-- CSS Editor -->
-    <div class="form-group col-md-6">
-      <P>CSS</P>
-      <pre id="modifyCodeCSS" class="editors rounded"><code class="css h-100" contenteditable="true" oninput="codeToTextarea(this, 'textareaCSS');">{{ "/* Write your code ... */" }}</code></pre>
-    </div><!-- CSS Editor --> --}}
-
-    <!-- Undisplayed <textarea>, will be filled with the content of the correponding <div>  -->
-    <textarea id="textareaJS" class="textInput" name="js" hidden></textarea>
-    <textarea id="textareaCSS" class="textInput" name="css" hidden></textarea>
-
-  </div><!-- Row editor -->
-
-</form>
+    </div><!--Form inputs upper row -->
 
 
+    <!-- Row editor -->
+    <div class="row editor" id="charts-editor">
+
+      <!-- JS Editor -->
+      <div class="form-group col-md-6">
+        <P>Javascript</P>
+        <pre id="modifyCodeJS" class="editors rounded">
+          {{ "// Write your code ..." }}
+        </pre>
+      </div><!-- JS Editor -->
+
+      <!-- CSS Editor -->
+      <div class="form-group col-md-6">
+        <P>CSS</P>
+        <pre id="modifyCodeCSS" class="editors rounded">
+          {{ "/* Write your code ... */" }}
+        </pre>
+      </div><!-- CSS Editor -->
+
+      <!-- Undisplayed <textarea>, will be filled with the content of the correponding <div>  -->
+      <textarea id="textareaJS" class="textInput" name="js" hidden></textarea>
+      <textarea id="textareaCSS" class="textInput" name="css" hidden></textarea>
+
+    </div><!-- Row editor -->
+
+  </form>
+
+  <script>
+  window.onload = function () {
+    editorToTextarea('modifyCodeJS', 'textareaJS', 'javascript');
+    editorToTextarea('modifyCodeCSS', 'textareaCSS', 'css');
+  }
+  </script>
 @endsection
