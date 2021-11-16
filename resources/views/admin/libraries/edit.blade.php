@@ -50,7 +50,7 @@
       <div class="row">
         <div class="col-md-12">
           <P>Library's code</P>
-          <pre id="displayCode" class="editors rounded">
+          <pre id="displayCode" class="vh-100 rounded">
             {!! $content !!}
           </pre>
         </div>

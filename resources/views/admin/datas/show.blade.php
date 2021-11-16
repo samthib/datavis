@@ -9,7 +9,7 @@
   <!-- Row display Datas -->
   <div class="row">
     <div class="col-md-12">
-      <pre id="displayDatas" class="editors rounded">
+      <pre id="displayDatas" class="vh-100 rounded">
         {!! $content !!}
       </pre>
     </div>

@@ -83,7 +83,7 @@
       <!-- JS Editor -->
       <div class="form-group col-md-6">
         <P>Javascript</P>
-        <pre id="modifyCodeJS" class="editors rounded">
+        <pre id="modifyCodeJS" class="vh-100 rounded">
           {{ "// Write your code ..." }}
         </pre>
       </div><!-- JS Editor -->
@@ -91,7 +91,7 @@
       <!-- CSS Editor -->
       <div class="form-group col-md-6">
         <P>CSS</P>
-        <pre id="modifyCodeCSS" class="editors rounded">
+        <pre id="modifyCodeCSS" class="vh-100 rounded">
           {{ "/* Write your code ... */" }}
         </pre>
       </div><!-- CSS Editor -->
