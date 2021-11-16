@@ -54,10 +54,6 @@
             {!! $content !!}
           </pre>
         </div>
-
-        <!-- Undisplayed <textarea>, will be filled with the content of the correponding <div>  -->
-        <textarea id="textareaCode" class="textInput" name="js" hidden disabled>{!! $content !!}</textarea>
-
       </div><!-- Row display Library -->
 
     </form>
@@ -65,7 +61,7 @@
 
     <script>
     window.onload = function () {
-      editorToTextarea('displayCode', 'textareaCode', 'javascript');
+      editorDisplay('displayCode', 'javascript');
     }
   </script>
 
