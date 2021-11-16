@@ -54,7 +54,7 @@ class DataController extends Controller
 
       $datas = Data::create($validated);
 
-      return redirect()->route('admin.datas.index');
+      return redirect()->route('admin.datas.index')->with('message', 'Data recorded');
     }
 
     /**
@@ -102,7 +102,7 @@ class DataController extends Controller
 
         /* Check if data is actualy used by a graph version */
         if ($data->charts->isNotEmpty()) {
-          return back()->with('error', 'Data file in use by a graphic');
+          return back()->with('error', 'Datas file in use by a graphic');
         }
 
         Storage::delete('public/'.$data->file);
@@ -114,7 +114,7 @@ class DataController extends Controller
 
       $data->update($validated);
 
-      return redirect()->route('admin.datas.index');
+      return back()->with('message', 'Data updated');
     }
 
     /**
@@ -134,6 +134,6 @@ class DataController extends Controller
 
       $data->delete();
 
-      return back();
+      return back()->with('message', 'Data deleted');
     }
 }

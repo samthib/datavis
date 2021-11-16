@@ -35800,7 +35800,7 @@ __webpack_require__(/*! ./quill-toolbar */ "./resources/js/quill-toolbar.js"); /
 
 __webpack_require__(/*! ./visits-chart */ "./resources/js/visits-chart.js");
 
-__webpack_require__(/*! ./ace */ "./resources/js/ace.js");
+__webpack_require__(/*! ./ace */ "./resources/js/ace.js"); // require("ace-builds/webpack-resolver");
 
 /***/ }),
 
@@ -36115,8 +36115,8 @@ if (document.querySelector('#visitsChart')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\Laravel\datavis\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\Laravel\datavis\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\laragon\www\Portfolio\datavis\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\Portfolio\datavis\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

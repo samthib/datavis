@@ -68,7 +68,7 @@ class MessageController extends Controller
       // dd($validated['imageLink']);
       Mail::to($validated['email'])->send(new SendEmail($validated));
 
-      return redirect()->route('admin.messages.sent.index')->with('message', 'Message envoyé');
+      return redirect()->route('admin.messages.sent.index')->with('message', 'Message sent');
     }
 
     /**
@@ -119,6 +119,6 @@ class MessageController extends Controller
     {
       $message->delete();
 
-      return back();
+      return back()->with('message', 'Message deleted');
     }
 }

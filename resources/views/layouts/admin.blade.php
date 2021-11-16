@@ -8,6 +8,9 @@
   <meta name="generator" content="Jekyll v4.1.1">
   <title>{{ __('Dashboard') }} {{ config('app.name', 'Laravel') }}</title>
 
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ asset('storage/'.$design->logo) }}">
+  
   @include('layouts.partials.admin.links')
 </head>
 <body>

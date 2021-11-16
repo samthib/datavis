@@ -42,7 +42,7 @@
       <div class="form-group col-md-6">
         <label class="w-100" for="hero">Hero image</label>
         <img class="img-fluid" style="max-height:350px" src="{!! asset('storage/'.$design->hero) !!}" alt="Hero">
-        <input id="hero" name="hero" type="file" class="form-control-file" {{ $design->hero }}>
+        <input id="hero" name="hero" type="file" class="form-control-file">
       </div><!-- Hero image -->
 
       <!-- Logo image -->
@@ -51,7 +51,7 @@
         <div class="text-center">
           <img class="img-fluid" style="max-height:350px" src="{!! asset('storage/'.$design->logo) !!}" alt="Hero">
         </div>
-        <input id="logo" name="logo" type="file" class="form-control-file" {{ $design->logo }}>
+        <input id="logo" name="logo" type="file" class="form-control-file">
       </div><!-- Logo image -->
 
       <!-- Site main color -->

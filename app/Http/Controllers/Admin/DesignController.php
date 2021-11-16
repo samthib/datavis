@@ -81,7 +81,7 @@ class DesignController extends Controller
         "color" => $request->color,
       ]);
 
-      return redirect()->route('admin.designs.index', compact('design'));
+      return redirect()->route('admin.designs.index', compact('design'))->with('message', 'Design recorded');
     }
 
     /**
@@ -153,7 +153,7 @@ class DesignController extends Controller
         ]);
       }
 
-      return redirect()->route('admin.designs.index', compact('design'));
+      return back()->with([compact('design'), 'message' => 'Design updated']);
     }
 
     /**
@@ -176,6 +176,6 @@ class DesignController extends Controller
 
       $design->delete();
 
-      return back();
+      return back()->with('message', 'Design deleted');
     }
 }

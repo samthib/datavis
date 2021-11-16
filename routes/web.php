@@ -60,25 +60,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function()
   });
 });
 
-/**
-*Routes for charts
-* @var view
-*/
+
+//Routes for charts
 Route::get('/', [ChartController::class, 'index'])->name('charts.index');
 Route::get('/charts/{chart:title}', [ChartController::class, 'show'])->name('charts.show');
 Route::get('/shadow/{chart:title}', [ChartController::class, 'shadow'])->name('charts.shadow');
 
-/**
-* Routes for emails messages
-* @var view
-*/
+
+// Routes for emails messages
 Route::get('/messages', [MessageController::class, 'create'])->name('messages.create');
 Route::post('/messages/store', [MessageController::class, 'store'])->name('messages.store');
 
-/**
-* Routes for pages
-* @var view
-*/
+
+// Routes for pages
 Route::get('/A-propos', [PageController::class, 'abouts'])->name('pages.abouts');
 Route::get('/features', [PageController::class, 'features'])->name('pages.features');
 Route::get('/{page:title}', [PageController::class, 'show'])->name('pages.show');

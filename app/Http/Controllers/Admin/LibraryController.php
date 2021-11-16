@@ -45,7 +45,7 @@ class LibraryController extends Controller
 
       $library = Library::create($validated);
 
-      return redirect()->route('admin.libraries.index');
+      return redirect()->route('admin.libraries.index')->with('message', 'Library recorded');
     }
 
     /**
@@ -90,7 +90,7 @@ class LibraryController extends Controller
 
       $library->update($validated);
 
-      return back();
+      return back()->with('message', 'Library updated');
     }
 
     /**
@@ -108,6 +108,6 @@ class LibraryController extends Controller
 
       $library->delete();
 
-      return back();
+      return back()->with('message', 'Library deleted');
     }
 }

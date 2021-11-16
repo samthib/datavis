@@ -60,7 +60,7 @@ class ChartController extends Controller
       $chart->libraries()->sync($request->libraries);
       $chart->datas()->sync($request->datas);
 
-      return redirect()->route('admin.charts.index');
+      return redirect()->route('admin.charts.index')->with('message', 'Chart recorded');
     }
 
     /**
@@ -111,7 +111,7 @@ class ChartController extends Controller
       $chart->libraries()->sync($request->libraries);
       $chart->datas()->sync($request->datas);
 
-      return back();
+      return back()->with('message', 'Chart updated');
     }
 
     /**
@@ -124,6 +124,6 @@ class ChartController extends Controller
     {
       $chart->delete();
 
-      return back();
+      return back()->with('message', 'Chart deleted');
     }
 }

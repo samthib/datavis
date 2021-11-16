@@ -14,18 +14,18 @@
       <!-- Data name -->
       <div class="form-group col-md-4">
         <label for="name">Name</label>
-        <input id="name" name="name" type="text" class="form-control" required>
+        <input id="name" name="name" type="text" class="form-control" value="{{ old('name') }}" required>
       </div><!-- Data name -->
 
       <!-- Data type -->
       <div class="form-group col-md-2">
         <label for="type">Type</label>
         <select id="type" name="type" type="text" class="form-control" required>
-          <option>JSON</option>
-          <option>CSV</option>
-          <option>TSV</option>
-          <option>EXCEL</option>
-          <option>TEXT</option>
+          <option {{ old('type') == 'JSON' ? 'selected' : '' }}>JSON</option>
+          <option {{ old('type') == 'CSV' ? 'selected' : '' }}>CSV</option>
+          <option {{ old('type') == 'TSV' ? 'selected' : '' }}>TSV</option>
+          <option {{ old('type') == 'EXCEL' ? 'selected' : '' }}>EXCEL</option>
+          <option {{ old('type') == 'TEXT' ? 'selected' : '' }}>TEXT</option>
         </select>
       </div><!-- Data type -->
 
@@ -45,7 +45,7 @@
       <!-- Description -->
       <div class="form-group col-md-6">
         <label for="description">Description</label>
-        <textarea id="description" class="form-control" name="description" rows="5"></textarea>
+        <textarea id="description" class="form-control" name="description" rows="5">{{ old('description') }}</textarea>
       </div><!-- Description -->
 
 

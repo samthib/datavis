@@ -32,7 +32,7 @@
       <!-- Data file -->
       <div class="form-group col-md-4">
         <label for="file">Data file</label>
-        <input id="file" name="file" type="file" class="form-control-file" required>
+        <input id="file" name="file" type="file" class="form-control-file">
       </div><!-- Data file -->
 
       <!-- Form buttons -->
@@ -51,35 +51,27 @@
 
     </div><!--Form inputs upper row -->
 
-
-    <!-- Row editor -->
-    {{-- <div class="row editor" id="editor"> --}}
-
       <!-- Row display Datas -->
       <div class="row">
         <div class="col-md-12">
-          <pre id="displayDatas" class="editors rounded"><code class="h-100">{!! $content !!}</code></pre>
+          <pre id="displayCode" class="editors rounded">
+            {!! $content !!}
+          </pre>
         </div>
+
+        <!-- Undisplayed <textarea>, will be filled with the content of the correponding <div>  -->
+        <textarea id="textareaCode" class="textInput" name="js" hidden disabled>{!! $content !!}</textarea>
+
       </div><!-- Row display Datas -->
 
-      {{-- <!-- JS Editor -->
-      <div class="form-group col-md-6">
-      <P>Javascript</P>
-      <pre id="modifyCodeJS" class="editors rounded"><code class="javascript h-100" contenteditable="true" oninput="codeToTextarea(this, 'textareaJS')">{{ $chart->js ?? '// Write your Eloquent code ...' }}</code></pre>
-    </div><!-- JS Editor -->
+    </form>
 
-    <!-- CSS Editor -->
-    <div class="form-group col-md-6">
-    <P>CSS</P>
-    <pre id="modifyCodeCSS" class="editors rounded"><code class="css h-100" contenteditable="true" oninput="codeToTextarea(this, 'textareaCSS')">{{ $chart->css ?? "/* Write your code ... */" }}</code></pre>
-  </div><!-- CSS Editor -->
 
-  <!-- Undisplayed <textarea>, will be filled with the content of the correponding <div>  -->
-  <textarea id="textareaJS" class="textInput" name="js" hidden>{{ $chart->js }}</textarea>
-  <textarea id="textareaCSS" class="textInput" name="css" hidden>{{ $chart->css }}</textarea> --}}
-
-{{-- </div><!-- Row editor --> --}}
-
+    <script>
+    window.onload = function () {
+      editorToTextarea('displayCode', 'textareaCode', 'json');
+    }
+  </script>
 </form>
 
 @endsection
