@@ -41,7 +41,7 @@
       </div><!-- Responsive Iframe container -->
 
       <div class="d-flex justify-content-center align-items-center mt-1 mt-md-4">
-        <button id="generatePDF" type="submit" class="btn btn-light btn-lg" name="button" onclick="graphToPDF(0)">Télécharger PDF</button>
+        <button id="generatePDF" type="submit" class="btn btn-light btn-lg" name="button" onclick="graphToPDF('.iframe-chart', '.title-chart', '#graph')">Télécharger PDF</button>
       </div>
 
     </div><!-- Graph part -->

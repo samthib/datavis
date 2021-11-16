@@ -1,5 +1,8 @@
 import 'ace-builds/src-min-noconflict/ace';
-import 'ace-builds/webpack-resolver';
+import 'ace-builds/src-min-noconflict/theme-monokai';
+import 'ace-builds/src-min-noconflict/mode-javascript';
+import 'ace-builds/src-min-noconflict/mode-css';
+import 'ace-builds/src-min-noconflict/mode-json';
 import 'ace-builds/src-min-noconflict/ext-language_tools';
 import 'ace-builds/src-min-noconflict/ext-emmet';
 

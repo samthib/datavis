@@ -3,39 +3,33 @@ import html2canvas from "html2canvas";
 
 /**
 * Create a PDF from an <iframe> with titles
-* @param  {int} id id of the chart and title
+* @param  {String} iframeSelector         class or id of the iframe element
+* @param  {String} titlesSelector         class or id of the title element
+* @param  {String} graphSelector          class or id of the graph element
 */
-window.graphToPDF = function (id) {
-  // Only one graph
-  if (id > 0) {
-    // Select the content of <iframe>
-    var iframe = document.querySelectorAll('#iframe-'+id);
-    //Get Graph title from the H1
-    var titles = document.querySelectorAll('#title-'+id);
-  // Multiple graphs
-  } else {
-    // Select the content of <iframe>
-    var iframe = document.querySelectorAll('.iframe-chart');
-    //Get Graph title from the H1
-    var titles = document.querySelectorAll('.title-chart');
-  }
+window.graphToPDF = function (iframeSelector, titlesSelector, graphSelector) {
+  // Select the content of <iframe>
+  var iframe = document.querySelectorAll(iframeSelector);
+  //Get Graph title from the H1
+  var header = document.querySelectorAll(titlesSelector);
 
-  var graph = [];
-  var title = [];
+  var graphs = [];
+  var titles = [];
 
   iframe.forEach((item, i) => {
-    graph[i] = item.contentDocument.querySelector('#graph');
-    title[i] = titles[i].innerText;
+    graphs[i] = item.contentDocument.querySelector(graphSelector);
+    titles[i] = header[i].innerText;
   });
-  generatePDF(graph, title);
+
+  generatePDF(graphs, titles);
 }
 
 /**
 * create the pdf based on the image
-* @param  {array} graph array of graphs in javascripts
-* @param  {array} title array of title text format
+* @param  {array} graphs array of graphs in javascripts
+* @param  {array} titles array of titles text format
 */
-window.generatePDF = async function (graph, title) {
+window.generatePDF = async function (graphs, titles) {
 
   const doc = new jsPDF({
     orientation: 'landscape',
@@ -46,24 +40,25 @@ window.generatePDF = async function (graph, title) {
   doc.setFontSize(30);
 
   // Proportions 16/9 ratio
-  var heightDoc = 162;
-  var widthDoc = 288;
+  var widthDoc = 297;
+  var heightDoc = widthDoc * 9/16;
+
   // Position with shift from title
   var positionX = (doc.internal.pageSize.getWidth()-widthDoc)/2;
   var positionY = (doc.internal.pageSize.getHeight()-heightDoc)/2+10;
 
-  var image = [];
-  const length = graph.length;
+  var images = [];
+  const length = graphs.length;
 
   for (let i = 0; i < length; i++) {
     // scale:1 to get all the chart without cropping
-    await html2canvas(graph[i], { scale: 1 }).then(function (canvas) {
+    await html2canvas(graphs[i], {scale: 1}).then(function (canvas) {
       // Create new image based on the graphic
-      image[i] = canvas.toDataURL('image/jpeg');
+      images[i] = canvas.toDataURL('image/jpeg');
 
-      //Add image and title
-      doc.addImage(image[i], "JPEG", positionX, positionY, widthDoc, heightDoc);
-      doc.text(title[i], doc.internal.pageSize.getWidth()/2, 20, { align: "center" });
+      // Add image and title
+      doc.text(titles[i], doc.internal.pageSize.getWidth()/2, 20, { align: "center" });
+      doc.addImage(images[i], "JPEG", positionX, positionY, widthDoc, heightDoc);
 
       // Add new page if necessary
       if (i < (length-1)) {
@@ -72,10 +67,8 @@ window.generatePDF = async function (graph, title) {
     });
   }
 
+  var docTitle = titles.length == 1 ? titles[0]+'.pdf' : titles[0]+','+titles[1]+',....pdf';
+
   // Save on the last page
-  if (title.length == 1) {
-    doc.save(title[0]+'.pdf');
-  } else if (title.length > 1) {
-    doc.save(title[0]+','+title[1]+',....pdf');
-  }
+  doc.save(docTitle)
 }
