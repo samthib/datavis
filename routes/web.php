@@ -7,7 +7,6 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +29,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function()
 
     /* Route to manage Admin's Board Charts */
     Route::get('/', function() {
-      return redirect()->route('admin.index');
+      return redirect()->route('admin.dashboards.index');
     });
-    Route::get('/dashboard', [Admin\AdminController::class, 'index'])->name('index');
+    Route::get('/dashboards', [Admin\DashboardController::class, 'index'])->name('dashboards.index');
 
     /* Route to manage Admin's Board Charts */
     Route::resource('/charts', Admin\ChartController::class);
@@ -60,17 +59,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function()
   });
 });
 
-
 //Routes for charts
 Route::get('/', [ChartController::class, 'index'])->name('charts.index');
 Route::get('/charts/{chart:title}', [ChartController::class, 'show'])->name('charts.show');
 Route::get('/shadow/{chart:title}', [ChartController::class, 'shadow'])->name('charts.shadow');
 
-
 // Routes for emails messages
 Route::get('/messages', [MessageController::class, 'create'])->name('messages.create');
 Route::post('/messages/store', [MessageController::class, 'store'])->name('messages.store');
-
 
 // Routes for pages
 Route::get('/A-propos', [PageController::class, 'abouts'])->name('pages.abouts');

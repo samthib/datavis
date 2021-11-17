@@ -25,7 +25,7 @@ class MessageController extends Controller
                           ->orderBy('id', 'desc')
                           ->simplePaginate(20);
 
-      return view('admin.messages.sent.index', compact('messages'));
+      return view('admin.messages.inbox.index', compact('messages'));
     }
 
     /**
