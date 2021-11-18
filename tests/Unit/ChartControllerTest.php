@@ -18,8 +18,8 @@ class ChartControllerTest extends TestCase
 
     $response->assertSuccessful();
     $response->assertViewIs('charts.shadow');
+    $response->assertViewHas('chart');
   }
-
 
   public function test_index()
   {
@@ -28,5 +28,16 @@ class ChartControllerTest extends TestCase
     $response->assertSuccessful();
     $response->assertViewIs('charts.index');
     $response->assertViewHas('charts');
+  }
+
+  public function test_show()
+  {
+    $chart = Chart::first();
+
+    $response = $this->get(route('charts.show', $chart));
+
+    $response->assertSuccessful();
+    $response->assertViewIs('charts.show');
+    $response->assertViewHas('chart');
   }
 }
