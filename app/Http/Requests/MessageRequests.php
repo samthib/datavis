@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ChartRules extends FormRequest
+class MessageRequests extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,11 @@ class ChartRules extends FormRequest
     public function rules()
     {
         return [
-          'title' => 'required|string|max:255',
-          'subtitle' => 'nullable|string|max:255',
-          'description' => 'nullable|string',
-          'js' => 'nullable|string',
-          'css' => 'nullable|string',
-          'libraries.*' => 'integer',
-          'datas.*' => 'integer',
-          'available' => 'filled',
+          'name' => 'required|max:255',
+          'email' => 'required|email|max:255',
+          'subject' => 'required|max:255',
+          'message' => 'required|max:2500',
+          'sent' => 'nullable|integer',
         ];
     }
 }

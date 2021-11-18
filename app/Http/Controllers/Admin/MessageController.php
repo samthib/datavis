@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\MessageRules;
+use App\Http\Requests\MessageRequests;
 
 use Illuminate\Support\Facades\Mail;
 
@@ -55,10 +55,10 @@ class MessageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\MessageRules  $request
+     * @param  \Illuminate\Http\MessageRequests  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MessageRules $request)
+    public function store(MessageRequests $request)
     {
       $validated = $request->validated();
 
@@ -100,11 +100,11 @@ class MessageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\MessageRequests  $request
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Message $message)
+    public function update(MessageRequests $request, Message $message)
     {
         //
     }

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Str;
 
-use App\Http\Requests\DataRules;
+use App\Http\Requests\DataRequests;
 
 class DataController extends Controller
 {
@@ -39,10 +39,10 @@ class DataController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\DataRules  $request
+     * @param  \Illuminate\Http\DataRequests  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DataRules $request)
+    public function store(DataRequests $request)
     {
       /* Validation rules */
       $validated = $request->validated();
@@ -66,7 +66,7 @@ class DataController extends Controller
     public function show(Data $data)
     {
       /* Get the datas from the file */
-      $content = file_get_contents(url('storage/'.$data->file));
+      $content = file_exists(url('storage/'.$data->file)) ? file_get_contents(url('storage/'.$data->file)) : '';
 
       return view('admin.datas.show', compact('data', 'content'));
     }
@@ -80,7 +80,7 @@ class DataController extends Controller
     public function edit(Data $data)
     {
       /* Get the datas from the file */
-      $content = file_get_contents(url('storage/'.$data->file));
+      $content = $content = file_exists(url('storage/'.$data->file)) ? file_get_contents(url('storage/'.$data->file)) : '';
 
       return view('admin.datas.edit', compact('data', 'content'));
     }
@@ -88,11 +88,11 @@ class DataController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\DataRules  $request
+     * @param  \Illuminate\Http\DataRequests  $request
      * @param  \App\Models\Data  $data
      * @return \Illuminate\Http\Response
      */
-    public function update(DataRules $request, Data $data)
+    public function update(DataRequests $request, Data $data)
     {
       /* Validation rules */
       $validated = $request->validated();

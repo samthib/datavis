@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\PageRules;
+use App\Http\Requests\PageRequests;
 
 class PageController extends Controller
 {
@@ -35,10 +35,10 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\PageRules  $request
+     * @param  \Illuminate\Http\PageRequests  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PageRules $request)
+    public function store(PageRequests $request)
     {
       /* Validation rules */
       $validated = $request->validated();
@@ -73,11 +73,11 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\PageRules  $request
+     * @param  \Illuminate\Http\PageRequests  $request
      * @param  \App\Models\Page  $page
      * @return \Illuminate\Http\Response
      */
-    public function update(PageRules $request, Page $page)
+    public function update(PageRequests $request, Page $page)
     {
       /* Validation rules */
       $validated = $request->validated();

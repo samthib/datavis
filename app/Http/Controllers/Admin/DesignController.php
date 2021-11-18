@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 
-use App\Http\Requests\DesignRules;
+use App\Http\Requests\DesignRequests;
 
 class DesignController extends Controller
 {
@@ -51,10 +51,10 @@ class DesignController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\DesignRules  $request
+     * @param  \Illuminate\Http\DesignRequests  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DesignRules $request)
+    public function store(DesignRequests $request)
     {
       $validated = $request->validated();
 
@@ -109,11 +109,11 @@ class DesignController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\DesignRules  $request
+     * @param  \Illuminate\Http\DesignRequests  $request
      * @param  \App\Models\Design  $design
      * @return \Illuminate\Http\Response
      */
-    public function update(DesignRules $request, Design $design)
+    public function update(DesignRequests $request, Design $design)
     {
       $validated = $request->validated();
 

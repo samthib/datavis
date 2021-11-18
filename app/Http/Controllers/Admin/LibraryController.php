@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Library;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\LibraryRules;
+use App\Http\Requests\LibraryRequests;
 
 class LibraryController extends Controller
 {
@@ -35,10 +35,10 @@ class LibraryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\LibraryRules  $request
+     * @param  \Illuminate\Http\LibraryRequests  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LibraryRules $request)
+    public function store(LibraryRequests $request)
     {
       /* Validation rules */
       $validated = $request->validated();
@@ -57,7 +57,7 @@ class LibraryController extends Controller
     public function show(Library $library)
     {
       /* Get the datas from the file */
-      $content = file_get_contents($library->link);
+      $content = file_exists($library->link) ? file_get_contents($library->link) : '';
 
       return view('admin.libraries.show', compact('library', 'content'));
     }
@@ -71,7 +71,7 @@ class LibraryController extends Controller
     public function edit(Library $library)
     {
       /* Get the datas from the file */
-      $content = file_get_contents($library->link);
+      $content = file_exists($library->link) ? file_get_contents($library->link) : '';
 
       return view('admin.libraries.edit', compact('library', 'content'));
     }
@@ -79,11 +79,11 @@ class LibraryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\LibraryRules  $request
+     * @param  \Illuminate\Http\LibraryRequests  $request
      * @param  \App\Models\Library  $library
      * @return \Illuminate\Http\Response
      */
-    public function update(LibraryRules $request, Library $library)
+    public function update(LibraryRequests $request, Library $library)
     {
       /* Validation rules */
       $validated = $request->validated();

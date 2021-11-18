@@ -8,7 +8,7 @@ use App\Models\Library;
 use App\Models\Data;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\ChartRules;
+use App\Http\Requests\ChartRequests;
 
 
 class ChartController extends Controller
@@ -41,10 +41,10 @@ class ChartController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\ChartRules  $request
+     * @param  \Illuminate\Http\ChartRequests  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ChartRules $request)
+    public function store(ChartRequests $request)
     {
       $validated = $request->validated();
 
@@ -91,11 +91,11 @@ class ChartController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\ChartRules  $request
+     * @param  \Illuminate\Http\ChartRequests  $request
      * @param  \App\Models\Chart  $chart
      * @return \Illuminate\Http\Response
      */
-    public function update(ChartRules $request, Chart $chart)
+    public function update(ChartRequests $request, Chart $chart)
     {
       $validated = $request->validated();
 

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DataRules extends FormRequest
+class DesignRequests extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,14 @@ class DataRules extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'required|string|max:255',
-          'type' => 'string|max:255',
-          'description' => 'nullable|string',
-          'file' => 'required|file',
+          'active' => 'filled',
+          'link' => 'nullable|string|max:255',
+          'title' => 'nullable|string|max:255',
+          'subtitle' => 'nullable|string|max:255',
+          'description' => 'nullable|string|max:255',
+          'hero' => 'image|max:5000',
+          'logo' => 'image|max:5000',
+          'color' => 'string|max:255',
         ];
     }
 }

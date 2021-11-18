@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LibraryRules extends FormRequest
+class PageRequests extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,10 @@ class LibraryRules extends FormRequest
     public function rules()
     {
         return [
-          'name' => 'required|string|max:255',
-          'version' => 'string|max:255',
-          'description' => 'string',
-          'link' => 'required|string|max:255',
+          'title' => 'nullable|string|max:255',
+          'subtitle' => 'nullable|string|max:255',
+          'icon' => 'nullable|string|max:255',
+          'content' => 'nullable|string',
         ];
     }
 }
