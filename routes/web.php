@@ -60,7 +60,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function()
 });
 
 //Routes for charts
-Route::get('/', [ChartController::class, 'index'])->name('charts.index');
+Route::middleware(['visit'])->group(function()
+{
+  Route::get('/', [ChartController::class, 'index'])->name('charts.index');
+});
 Route::get('/charts/{chart:title}', [ChartController::class, 'show'])->name('charts.show');
 Route::get('/shadow/{chart:title}', [ChartController::class, 'shadow'])->name('charts.shadow');
 

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chart;
-use App\Models\Visit;
 use App\Models\Design;
 use App\Models\Page;
 use Illuminate\Http\Request;
@@ -28,16 +27,6 @@ class ChartController extends Controller
      */
     public function index()
     {
-      $ip = request()->ip();
-
-      /* Visits counter */
-      $visits = Visit::firstOrCreate(
-        ['date' => date(now()->toDateString())],
-        ['count' => 0]
-      );
-
-      $visits->increment('count');
-
       $charts = Chart::where('available', 1)->orderBy('id', 'desc')->simplePaginate(6);
 
       return view('charts.index', compact('charts'));
