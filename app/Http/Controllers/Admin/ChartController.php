@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Data;
 use App\Models\Chart;
 use App\Models\Library;
-use App\Models\Data;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ChartRequests;
 
 
@@ -48,14 +49,9 @@ class ChartController extends Controller
     {
       $validated = $request->validated();
 
-      $chart = Chart::create([
-        "title" => $request->title,
-        "subtitle" => $request->subtitle,
-        "description" => $request->description,
-        "js" => $request->js,
-        "css" => $request->css,
-        "available" => isset($request->available) ? 1 : 0,
-      ]);
+      $validated['available'] = $request->has('available');
+
+      $chart = Chart::create($validated);
 
       $chart->libraries()->sync($request->libraries);
       $chart->datas()->sync($request->datas);
@@ -99,18 +95,14 @@ class ChartController extends Controller
     {
       $validated = $request->validated();
 
-      $chart->update([
-        "title" => $request->title,
-        "subtitle" => $request->subtitle,
-        "description" => $request->description,
-        "js" => $request->js,
-        "css" => $request->css,
-        "available" => isset($request->available) ? 1 : 0,
-      ]);
+      $validated = Arr::except($validated, ['libraries', 'datas']);
+      $validated['available'] = $request->has('available');
 
+      $chart->update($validated);
+      
       $chart->libraries()->sync($request->libraries);
       $chart->datas()->sync($request->datas);
-
+      
       return back()->with('message', 'Chart updated');
     }
 

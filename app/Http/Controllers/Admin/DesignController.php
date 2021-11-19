@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Design;
 use App\Models\Chart;
+use App\Models\Design;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
 use App\Http\Requests\DesignRequests;
+use Illuminate\Support\Facades\Storage;
 
 class DesignController extends Controller
 {
@@ -64,23 +65,15 @@ class DesignController extends Controller
       }
 
       /* Record the hero image */
-      $heroLink = $request->file('hero')->store('img/heros', 'public');
+      $validated['hero'] = $request->file('hero')->store('img/heros', 'public');      
 
       /* Record the logo image */
-      $logoLink = $request->file('logo')->store('img/logos', 'public');
+      $validated['logo'] = $request->file('logo')->store('img/logos', 'public');      
 
+      $validated['active'] = $request->has('active');
 
-      $design = Design::create([
-        "active" => isset($request->active) ? 1 : 0,
-        "link" => $request->subtitle,
-        "title" => $request->title,
-        "subtitle" => $request->subtitle,
-        "description" => $request->description,
-        "hero" => $heroLink,
-        "logo" => $logoLink,
-        "color" => $request->color,
-      ]);
-
+      $design = Design::create($validated);
+      
       return redirect()->route('admin.designs.index', compact('design'))->with('message', 'Design recorded');
     }
 
@@ -122,36 +115,21 @@ class DesignController extends Controller
         Design::where('id', '!=', $design->id)->update(['active' => 0]);
       }
 
-      $design->update([
-        "active" => isset($request->active) ? 1 : 0,
-        "link" => $request->subtitle,
-        "title" => $request->title,
-        "subtitle" => $request->subtitle,
-        "description" => $request->description,
-        "color" => $request->color,
-      ]);
-
       /* Update the hero image */
       if (!empty($request->file('hero'))) {
-        $hero = $design->value('hero');
-        Storage::delete('public/'.$hero);
-        $heroLink = $request->file('hero')->store('img/heros', 'public');
-
-        $design->update([
-          "hero" => $heroLink,
-        ]);
+        Storage::delete('public/'.$design->value('hero'));
+        $validated['hero'] = $request->file('hero')->store('img/heros', 'public');
       }
 
       /* Update the logo image */
       if (!empty($request->file('logo'))) {
-        $logo = $design->value('logo');
-        Storage::delete('public/'.$logo);
-        $logoLink = $request->file('logo')->store('img/logos', 'public');
-
-        $design->update([
-          "logo" => $logoLink,
-        ]);
+        Storage::delete('public/'.$design->value('logo'));
+        $validated['logo'] = $request->file('logo')->store('img/logos', 'public');
       }
+
+      $validated['active'] = $request->has('active');
+
+      $design->update($validated);
 
       return back()->with([compact('design'), 'message' => 'Design updated']);
     }
@@ -168,11 +146,8 @@ class DesignController extends Controller
         return back()->with('error', 'Design in use by the application');
       }
 
-      $hero = $design->value('hero');
-      Storage::delete('public/'.$hero);
-
-      $logo = $design->value('logo');
-      Storage::delete('public/'.$logo);
+      Storage::delete('public/'.$design->value('hero'));
+      Storage::delete('public/'.$design->value('logo'));
 
       $design->delete();
 
