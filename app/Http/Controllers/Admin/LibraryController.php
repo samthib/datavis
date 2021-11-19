@@ -57,7 +57,12 @@ class LibraryController extends Controller
     public function show(Library $library)
     {
       /* Get the datas from the file */
-      $content = file_exists($library->link) ? file_get_contents($library->link) : '';
+      try {
+        $content = file_get_contents($library->link);
+      } catch (\Exception $e) {
+        $content = "Exception code : " . $e->getCode() . "\n";
+        $content .= "Exception message : " . $e->getMessage();
+      }
 
       return view('admin.libraries.show', compact('library', 'content'));
     }
@@ -71,7 +76,12 @@ class LibraryController extends Controller
     public function edit(Library $library)
     {
       /* Get the datas from the file */
-      $content = file_exists($library->link) ? file_get_contents($library->link) : '';
+      try {
+        $content = file_get_contents($library->link);
+      } catch (\Exception $e) {
+        $content = "Exception code : " . $e->getCode() . "\n";
+        $content .= "Exception message : " . $e->getMessage();
+      }
 
       return view('admin.libraries.edit', compact('library', 'content'));
     }

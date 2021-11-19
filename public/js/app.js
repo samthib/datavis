@@ -30736,6 +30736,7 @@ window.options = function (mode) {
   return {
     mode: "ace/mode/" + mode,
     theme: "ace/theme/" + theme,
+    wrap: true,
     readOnly: readOnly,
     enableBasicAutocompletion: true,
     enableLiveAutocompletion: true,

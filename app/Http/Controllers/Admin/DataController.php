@@ -66,7 +66,12 @@ class DataController extends Controller
     public function show(Data $data)
     {
       /* Get the datas from the file */
-      $content = file_exists(url('storage/'.$data->file)) ? file_get_contents(url('storage/'.$data->file)) : '';
+      try {
+        $content = file_get_contents(url('storage/'.$data->file));
+      } catch (\Exception $e) {
+        $content = "Exception code : " . $e->getCode() . "\n";
+        $content .= "Exception message : " . $e->getMessage();
+      }
 
       return view('admin.datas.show', compact('data', 'content'));
     }
@@ -80,7 +85,12 @@ class DataController extends Controller
     public function edit(Data $data)
     {
       /* Get the datas from the file */
-      $content = $content = file_exists(url('storage/'.$data->file)) ? file_get_contents(url('storage/'.$data->file)) : '';
+      try {
+        $content = file_get_contents(url('storage/'.$data->file));
+      } catch (\Exception $e) {
+        $content = "Exception code : " . $e->getCode() . "\n";
+        $content .= "Exception message : " . $e->getMessage();
+      }
 
       return view('admin.datas.edit', compact('data', 'content'));
     }

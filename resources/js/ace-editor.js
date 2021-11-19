@@ -38,6 +38,7 @@ window.options = function(mode, theme = "monokai", readOnly = false) {
   return {
     mode: "ace/mode/"+mode,
     theme: "ace/theme/"+theme,
+    wrap: true,
     readOnly: readOnly,
     enableBasicAutocompletion: true,
     enableLiveAutocompletion: true,
