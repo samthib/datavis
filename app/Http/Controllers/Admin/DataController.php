@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Data;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
 

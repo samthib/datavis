@@ -45,7 +45,7 @@
         <!-- Form buttons -->
         <div class="form-group col-md-2 d-flex align-items-end justify-content-end">
           <!-- Action buttons -->
-          <button type="submit" form="form" class="btn btn-primary mr-1" id="updateSlideElementTypeBtn">Save</button>
+          <button type="submit" form="form" class="btn btn-primary mr-1">Save</button>
           <a href="{{ route('admin.charts.index') }}" class="btn btn-danger">Cancel</a>
         </div><!-- Form buttons -->
 

@@ -2,7 +2,7 @@
     <x-jet-authentication-card>
         <x-slot name="logo">
             {{-- <x-jet-authentication-card-logo /> --}}
-            <img src="http://datavis.local/logo-orbite-shadow.png" width="100px" height="100px" alt="Logo">
+            <img src="{{ asset('storage/'.$design->logo) }}" width="100px" height="100px" alt="Logo">
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />

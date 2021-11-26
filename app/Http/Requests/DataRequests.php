@@ -27,7 +27,7 @@ class DataRequests extends FormRequest
           'name' => 'required|string|max:255',
           'type' => 'string|max:255',
           'description' => 'nullable|string',
-          'file' => 'required|file',
+          'file' => 'file',
         ];
     }
 }

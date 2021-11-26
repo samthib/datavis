@@ -20,7 +20,7 @@
       <!-- Form buttons -->
       <div class="form-group offset-md-2 col-md-2 d-flex align-items-end justify-content-end">
         <!-- Action buttons -->
-        <button type="submit" form="form" class="btn btn-primary mr-1" id="updateSlideElementTypeBtn">Save</button>
+        <button type="submit" form="form" class="btn btn-primary mr-1">Save</button>
         <a href="{{ route('admin.pages.index') }}" class="btn btn-danger">Cancel</a>
       </div><!-- Form buttons -->
 

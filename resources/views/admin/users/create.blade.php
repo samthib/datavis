@@ -4,48 +4,56 @@
 
   <x-admin.header.create-component plural-name="{{ __('Users') }}" title="{{ __('New User') }}" :index-link="route('admin.users.index')" />
 
-{{--
-  <form id="form" action="{{ route('admin.libraries.store') }}" method="post">
+
+  <form id="form" action="{{ route('admin.users.store') }}" method="post">
     @csrf
 
     <!--Form inputs upper row -->
     <div class="row">
-
-      <!-- Graphic name -->
+    
+      <!-- User name -->
       <div class="form-group col-md-4">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" class="form-control" required>
-      </div><!-- Graphic name -->
-
-      <!-- Graphic version name -->
-      <div class="form-group col-md-2">
-        <label for="version">Version</label>
-        <input id="version" name="version" type="text" class="form-control" required>
-      </div><!-- Graphic version name -->
-
-      <!-- Library link -->
+        <label for="name">{{ __('Name') }}</label>
+        <input id="name" name="name" type="text" class="form-control" value="{{ old('name') }}">
+      </div><!-- User name -->
+    
+      <!-- User email -->
       <div class="form-group col-md-4">
-        <label for="link">Library link</label>
-        <input id="link" name="link" type="text" class="form-control" required>
-      </div><!-- Library link -->
-
+        <label for="email">{{ __('Email') }}</label>
+        <input id="email" name="email" type="text" class="form-control" value="{{ old('email') }}">
+      </div><!-- User email -->
+    
+      <!-- Checkbox verified-->
+      <div class="form-group col-md-2 d-flex align-items-end">
+        <label for="verified">
+          <span>{{ __('Verified') }}</span>
+          <input id="verified" name="verified" type="checkbox" disabled/>
+        </label>
+      </div><!-- Checkbox verified-->
+    
       <!-- Form buttons -->
       <div class="form-group col-md-2 d-flex align-items-end justify-content-end">
         <!-- Action buttons -->
-        <button type="submit" form="form" class="btn btn-primary mr-1" id="updateSlideElementTypeBtn">Save</button>
-        <a href="{{ route('admin.libraries.index') }}" class="btn btn-danger">Cancel</a>
+        <button type="submit" form="form" class="btn btn-primary mr-1">Save</button>
+        <a href="{{ route('admin.users.index') }}" class="btn btn-danger">Cancel</a>
       </div><!-- Form buttons -->
+    
+      <!-- User password -->
+      <div class="form-group col-md-4">
+        <label for="password">{{ __('Password') }}</label>
+        <input id="password" name="password" type="password" class="form-control">
+      </div><!-- User password -->
 
-      <!-- Description -->
-      <div class="form-group col-md-6">
-        <label for="description">Description</label>
-        <textarea id="description" class="form-control" name="description" rows="5"></textarea>
-      </div><!-- Description -->
+      <!-- User password confirmation -->
+      <div class="form-group col-md-4">
+        <label for="password_confirmation">{{ __('Password confirmation') }}</label>
+        <input id="password_confirmation" name="password_confirmation" type="password" class="form-control">
+      </div><!-- User password confirmation -->
 
+    </div>
+    <!--Form inputs upper row -->
 
-    </div><!--Form inputs upper row -->
-
-  </form> --}}
+  </form>
 
 
 @endsection

@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Chart;
 use App\Models\Design;
-use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 
@@ -65,10 +64,11 @@ class DesignController extends Controller
       }
 
       /* Record the hero image */
-      $validated['hero'] = $request->file('hero')->store('img/heros', 'public');      
+      $validated['hero'] = optional($request->file('hero'))->store('img/heros', 'public') ?? '';      
 
       /* Record the logo image */
-      $validated['logo'] = $request->file('logo')->store('img/logos', 'public');      
+      $validated['logo'] = optional($request->file('logo'))->store('img/logos', 'public') ?? '';      
+
 
       $validated['active'] = $request->has('active');
 
@@ -117,13 +117,13 @@ class DesignController extends Controller
 
       /* Update the hero image */
       if (!empty($request->file('hero'))) {
-        Storage::delete('public/'.$design->value('hero'));
+        Storage::delete('public/'.$design->hero);
         $validated['hero'] = $request->file('hero')->store('img/heros', 'public');
       }
 
       /* Update the logo image */
       if (!empty($request->file('logo'))) {
-        Storage::delete('public/'.$design->value('logo'));
+        Storage::delete('public/'.$design->logo);
         $validated['logo'] = $request->file('logo')->store('img/logos', 'public');
       }
 
@@ -146,8 +146,8 @@ class DesignController extends Controller
         return back()->with('error', 'Design in use by the application');
       }
 
-      Storage::delete('public/'.$design->value('hero'));
-      Storage::delete('public/'.$design->value('logo'));
+      Storage::delete('public/'.$design->hero);
+      Storage::delete('public/'.$design->logo);
 
       $design->delete();
 

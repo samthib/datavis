@@ -6,7 +6,7 @@ use App\Models\Data;
 use App\Models\Chart;
 use App\Models\Library;
 use Illuminate\Support\Arr;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChartRequests;
@@ -49,10 +49,11 @@ class ChartController extends Controller
     {
       $validated = $request->validated();
 
+      $validated = Arr::except($validated, ['libraries', 'datas']);
       $validated['available'] = $request->has('available');
-
+      
       $chart = Chart::create($validated);
-
+      
       $chart->libraries()->sync($request->libraries);
       $chart->datas()->sync($request->datas);
 

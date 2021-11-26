@@ -27,3 +27,27 @@
     </div>
   @endforeach
 @endif
+
+<!-- Error validation messages Flash for Fortify update profile -->
+@if ($errors->updateProfileInformation->any())
+  @foreach ($errors->updateProfileInformation->all() as $key => $message)
+    <div class="alert alert-danger alert-dismissible fade show my-1" role="alert">
+      <strong>{{ $message }}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  @endforeach
+@endif
+
+<!-- Error validation messages Flash for Fortify update password -->
+@if ($errors->updatePassword->any())
+  @foreach ($errors->updatePassword->all() as $key => $message)
+    <div class="alert alert-danger alert-dismissible fade show my-1" role="alert">
+      <strong>{{ $message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+  @endforeach
+@endif

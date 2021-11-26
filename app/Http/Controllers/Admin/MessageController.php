@@ -4,12 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Message;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 use App\Http\Requests\MessageRequests;
-
 use Illuminate\Support\Facades\Mail;
-
 use App\Mail\SendEmail;
 
 class MessageController extends Controller

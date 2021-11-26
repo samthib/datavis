@@ -25,7 +25,6 @@ class DesignRequests extends FormRequest
     {
         return [
           'active' => 'filled',
-          'link' => 'nullable|string|max:255',
           'title' => 'nullable|string|max:255',
           'subtitle' => 'nullable|string|max:255',
           'description' => 'nullable|string|max:255',
