@@ -14,20 +14,20 @@
       <!-- Graphic name -->
       <div class="form-group col-md-4">
         <label for="title">Title</label>
-        <input id="title" name="title" type="text" class="form-control" required>
+        <input id="title" name="title" type="text" class="form-control" value="{{ old('title') }}" required>
       </div><!-- Graphic name -->
 
       <!-- Graphic version name -->
       <div class="form-group col-md-4">
         <label for="subtitle">Subtitle</label>
-        <input id="subtitle" name="subtitle" type="text" class="form-control" required>
+        <input id="subtitle" name="subtitle" type="text" class="form-control" value="{{ old('subtitle') }}" required>
       </div><!-- Graphic version name -->
 
       <!-- Checkbox Available-->
       <div class="form-group col-md-2 d-flex align-items-end">
         <label for="available">
           <span>Availabity</span>
-          <input id="available" name="available" type="checkbox" checked/>
+          <input id="available" name="available" type="checkbox" {{ old('available') ? 'checked' : '' }}/>
         </label>
       </div><!-- Checkbox Available-->
 
@@ -41,7 +41,7 @@
       <!-- Description -->
       <div class="form-group col-md-8">
         <label for="description">Description</label>
-        <textarea id="description" class="form-control" name="description" rows="5"></textarea>
+        <textarea id="description" class="form-control" name="description" rows="5">{{ old('description') }}</textarea>
       </div><!-- Description -->
 
       <!-- Library select -->
@@ -49,7 +49,7 @@
         <label for="libraries[]">Libraries</label>
         <select id="libraries[]" name="libraries[]" class="custom-select" size="5" multiple required>
           @foreach ($libraries as $key => $library)
-            <option value="{{ $library->id }}">{{ $library->name." - ".$library->version }}</option>
+            <option value="{{ $library->id }}" {{ in_array($library->id, old('libraries') ?? []) ? 'selected' : '' }}>{{ $library->name." - ".$library->version }}</option>
           @endforeach
         </select>
       </div><!-- Library select -->
@@ -59,7 +59,7 @@
         <label for="datas[]">Datas</label>
         <select id="datas[]" name="datas[]" class="custom-select" size="5" multiple>
           @foreach ($datas as $key => $data)
-            <option value="{{ $data->id }}">{{ $data->name." - ".$data->type }}</option>
+            <option value="{{ $data->id }}" {{ in_array($data->id, old('datas') ?? []) ? 'selected' : '' }}>{{ $data->name." - ".$data->type }}</option>
           @endforeach
         </select>
       </div><!-- Data select -->
@@ -84,7 +84,7 @@
       <div class="form-group col-md-6">
         <P>Javascript</P>
         <pre id="modifyCodeJS" class="vh-100 rounded">
-          {{ "// Write your code ..." }}
+          {{ old('js') ?? "// Write your code ..." }}
         </pre>
       </div><!-- JS Editor -->
 
@@ -92,13 +92,13 @@
       <div class="form-group col-md-6">
         <P>CSS</P>
         <pre id="modifyCodeCSS" class="vh-100 rounded">
-          {{ "/* Write your code ... */" }}
+          {{ old('css') ?? "/* Write your code ... */" }}
         </pre>
       </div><!-- CSS Editor -->
 
       <!-- Undisplayed <textarea>, will be filled with the content of the correponding <div>  -->
-      <textarea id="textareaJS" class="textInput" name="js" hidden></textarea>
-      <textarea id="textareaCSS" class="textInput" name="css" hidden></textarea>
+      <textarea id="textareaJS" class="textInput" name="js" hidden>{{ old('js') }}</textarea>
+      <textarea id="textareaCSS" class="textInput" name="css" hidden>{{ old('css') }}</textarea>
 
     </div><!-- Row editor -->
 

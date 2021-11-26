@@ -43,7 +43,7 @@ class PageController extends Controller
       /* Validation rules */
       $validated = $request->validated();
 
-      $page = Page::create($validated);
+      Page::create($validated);
 
       return redirect()->route('admin.pages.index');
     }

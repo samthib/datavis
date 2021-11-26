@@ -45,9 +45,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = (new CreateNewUser)->create($request->all());
+        (new CreateNewUser)->create($request->all());
 
-        return redirect()->route('admin.users.edit', $user)->with('message', 'User recorded');
+        return redirect()->route('admin.users.index')->with('message', 'User recorded');
     }
 
     /**

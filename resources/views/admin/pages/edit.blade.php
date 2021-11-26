@@ -12,34 +12,35 @@
     <div class="row">
 
       <!-- Site title -->
-      <div class="form-group col-md-8">
+      <div class="form-group col-md-4">
         <label for="title">Title</label>
         <input id="title" name="title" type="text" class="form-control" value="{{ $page->title }}" required>
       </div><!-- Site title -->
+      
+      <!-- Site subtitle -->
+      <div class="form-group col-md-4">
+        <label for="subtitle">Subtitle</label>
+        <input id="subtitle" name="subtitle" type="text" class="form-control" value="{{ $page->subtitle }}">
+      </div><!-- Site subtitle -->
+      
+      <!-- Site icon -->
+      <div class="form-group col-md-2">
+        <label for="icon">Icon <a href="https://fontawesome.com/v4.7/" target="_blank">Font awesome <span data-feather="external-link"></span></a></label>
+        <input id="icon" name="icon" type="text" class="form-control" value="{{ $page->icon }}" placeholder="fa fa-user">
+      </div><!-- Site icon -->
 
       <!-- Form buttons -->
-      <div class="form-group offset-md-2 col-md-2 d-flex align-items-end justify-content-end">
+      <div class="form-group col-md-2 d-flex align-items-end justify-content-end">
         <!-- Action buttons -->
         <button type="submit" form="form" class="btn btn-primary mr-1">Save</button>
         <a href="{{ route('admin.pages.index') }}" class="btn btn-danger">Cancel</a>
       </div><!-- Form buttons -->
 
-      <!-- Site subtitle -->
-      <div class="form-group col-md-6">
-        <label for="subtitle">Subtitle</label>
-        <input id="subtitle" name="subtitle" type="text" class="form-control" value="{{ $page->subtitle }}">
-      </div><!-- Site subtitle -->
-
-      <!-- Site icon -->
-      <div class="form-group col-md-6">
-        <label for="icon">Icon <a href="https://fontawesome.com/v4.7/" target="_blank">Font awesome <span data-feather="external-link"></span></a></label>
-        <input id="icon" name="icon" type="text" class="form-control" value="{{ $page->icon }}" placeholder="fa fa-user">
-      </div><!-- Site icon -->
-
       <!-- Content -->
       <div class="form-group col-md-12">
         <label for="content">Content</label>
-        <textarea id="content" class="form-control" name="content" rows="15">{{ $page->content }}</textarea>
+        <textarea id="quill-editor-target" name="content" hidden>{!! $page->content !!}</textarea>
+        <div id="quill-editor" class="form-control" style="height: 350px;">{!! $page->content !!}</div>
       </div><!-- Content -->
 
     </div><!--Form inputs upper row -->

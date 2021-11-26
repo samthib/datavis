@@ -38,7 +38,7 @@ var quillToolbarOptions = [
 
   // Populate hidden textarea on change
   quill.on('text-change', function() {
-    let message =  document.querySelector('#message');
-    message.innerHTML = quill.root.innerHTML;
+    let target = document.querySelector('#quill-editor-target');
+    target.innerHTML = quill.root.innerHTML;
   });
 }

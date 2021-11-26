@@ -7,9 +7,7 @@ use App\Models\Data;
 // use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Support\Str;
-
 use App\Http\Requests\DataRequests;
 
 class DataController extends Controller
@@ -52,7 +50,7 @@ class DataController extends Controller
       $fileName = Str::kebab($fileName);
       $validated['file'] = $request->file('file')->storeAs('datas', $fileName, 'public');
 
-      $datas = Data::create($validated);
+      Data::create($validated);
 
       return redirect()->route('admin.datas.index')->with('message', 'Data recorded');
     }

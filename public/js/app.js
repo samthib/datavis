@@ -31003,8 +31003,8 @@ if (document.querySelector('#quill-editor')) {
   }); // Populate hidden textarea on change
 
   quill.on('text-change', function () {
-    var message = document.querySelector('#message');
-    message.innerHTML = quill.root.innerHTML;
+    var target = document.querySelector('#quill-editor-target');
+    target.innerHTML = quill.root.innerHTML;
   });
 }
 

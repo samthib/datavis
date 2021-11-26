@@ -39,8 +39,8 @@
       <!-- Message -->
       <div class="form-group col-md-8">
         <label for="message">Message</label>
-        <textarea id="message" name="message" hidden>{!! old('message') !!}</textarea>
-        <div id="quill-editor" class="form-control" style="height: 250px;">{!! old('message') !!}</div>
+        <textarea id="quill-editor-target" name="message" hidden>{!! old('message') !!}</textarea>
+        <div id="quill-editor" class="form-control" style="height: 350px;">{!! old('message') !!}</div>
       </div><!-- Message -->
 
       <input type="number" name="sent" value="1" hidden>

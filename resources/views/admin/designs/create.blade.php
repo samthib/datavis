@@ -14,20 +14,20 @@
       <!-- Site title -->
       <div class="form-group col-md-4">
         <label for="title">Title</label>
-        <input id="title" name="title" type="text" class="form-control" required>
+        <input id="title" name="title" type="text" class="form-control" value="{{ old('title') }}" required>
       </div><!-- Site title -->
 
       <!-- Site subtitle -->
       <div class="form-group col-md-4">
         <label for="subtitle">Subtitle</label>
-        <input id="subtitle" name="subtitle" type="text" class="form-control" required>
+        <input id="subtitle" name="subtitle" type="text" class="form-control" value="{{ old('subtitle') }}" required>
       </div><!-- Site subtitle -->
 
       <!-- Checkbox Active-->
       <div class="form-group col-md-2 d-flex align-items-end">
         <label for="active">
           <span>Active</span>
-          <input id="active" name="active" type="checkbox" checked/>
+          <input id="active" name="active" type="checkbox" {{ old('active') ? 'checked' : '' }}/>
         </label>
       </div><!-- Checkbox Active-->
 
@@ -53,13 +53,13 @@
       <!-- Site main color -->
       <div class="form-group col-md-4">
         <label for="color">Color</label>
-        <input id="color" name="color" type="color" class="form-control" required>
+        <input id="color" name="color" type="color" class="form-control" value="{{ old('color') }}" required>
       </div><!-- Site main color -->
 
       <!-- Description -->
       <div class="form-group col-md-8">
         <label for="description">Description</label>
-        <textarea id="description" class="form-control" name="description" rows="5"></textarea>
+        <textarea id="description" class="form-control" name="description" rows="5">{{ old('description') }}</textarea>
       </div><!-- Description -->
 
   </div><!--Form inputs upper row -->
