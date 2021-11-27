@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\Message;
+use App\Models\User;
+use App\Models\Design;
 // use Illuminate\Http\Request;
 
-use App\Http\Requests\MessageRequests;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmail;
+use App\Models\Message;
+use Illuminate\Mail\Markdown;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\MessageRequests;
 
 class MessageController extends Controller
 {
@@ -60,10 +63,16 @@ class MessageController extends Controller
     {
       $validated = $request->validated();
 
-      Message::create($validated);
+      /* Add customs datas of the website */
+      $design = Design::where('active', 1)->first();
+      $user = User::first();
+      
+      $validated['logo'] = asset('storage/'.$design->logo);
+      $validated['hero'] = asset('storage/'.$design->hero);
+      $validated['sender'] = $user->name;
+      $validated['photo'] = asset('storage/'.$user->profile_photo_path);
 
-      // $validated['imageLink'] = \App\Models\Design::first('logo');
-      // dd($validated['imageLink']);
+      Message::create($validated);
       Mail::to($validated['email'])->send(new SendEmail($validated));
 
       return redirect()->route('admin.messages.sent.index')->with('message', 'Message sent');
@@ -77,10 +86,16 @@ class MessageController extends Controller
      */
      public function show(Message $message)
      {
+       $data = $message->toArray();
+
+       /* If email as been sent or received */
        if ($message->sent == 0) {
-         return view('admin.messages.inbox.show', compact('message'));
+         $markdown = new Markdown(view(), config('mail.markdown'));
+         $email = $markdown->render('emails.contact', compact('data'));
+         return view('admin.messages.show', compact('message', 'email'));
        } elseif ($message->sent != 0) {
-         return view('admin.messages.sent.show', compact('message'));
+         $email = view('emails.send', compact('data'))->render();
+         return view('admin.messages.show', compact('message', 'email'));
        }
      }
 

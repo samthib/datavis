@@ -19,6 +19,10 @@ class CreateMessagesTable extends Migration
             $table->string('email');
             $table->string('subject');
             $table->text('message');
+            $table->string('logo')->nullable();
+            $table->string('hero')->nullable();
+            $table->string('sender')->nullable();
+            $table->string('photo')->nullable();
             $table->boolean('sent')->default(0);
             $table->timestamps();
         });

@@ -11,17 +11,14 @@ class SendEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
-
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(array $data)
-    {
-        $this->data = $data;
-    }
+    public function __construct(
+        public array $data,
+    ) {}
 
     /**
      * Build the message.
@@ -31,6 +28,5 @@ class SendEmail extends Mailable
     public function build()
     {
       return $this->view('emails.send');
-        // return $this->markdown('emails.send-mardown');
     }
 }
