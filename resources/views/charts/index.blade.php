@@ -5,10 +5,9 @@
   <!-- Hero image -->
   <div class="hero-img position-relative overflow-hidden text-white text-center shadow vh-100">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
-      <h1 class="display-4 font-weight-normal">Data Visualization</h1>
-      <p class="lead font-weight-normal">Site dédié à l'analyse et à la visualisation de données.</p>
-      <h3>En construction ...</h3>
-      <i class="fa fa-cogs fa-5x mt-4" aria-hidden="true"></i>
+      <h1 class="display-4 font-weight-normal">{{ $design->title }}</h1>
+      <p class="lead font-weight-normal">{{ $design->subtitle }}</p>
+      <div>{!! $design->description !!}</div>
       <br><br>
       <a class="text-dark" href="#charts-container" role="button"><i class="fa fa-chevron-circle-down fa-4x" aria-hidden="true"></i></a>
     </div>

@@ -56,15 +56,23 @@
         <input id="color" name="color" type="color" class="form-control" value="{{ old('color') }}" required>
       </div><!-- Site main color -->
 
-      <!-- Description -->
-      <div class="form-group col-md-8">
-        <label for="description">Description</label>
-        <textarea id="description" class="form-control" name="description" rows="5">{{ old('description') }}</textarea>
-      </div><!-- Description -->
-
-  </div><!--Form inputs upper row -->
-
-</form>
+      <!-- HTML Editor -->
+      <div class="form-group col-md-12">
+        <p>Description</p>
+        <pre id="modifyCodeHTML" class="vh-100 rounded">{!! old('description') ?? "<!-- Write your code ... -->" !!}</pre>
+        <textarea id="textareaHTML" class="textInput" name="description" hidden>{!! old('description') !!}</textarea>
+      </div><!-- HTML Editor -->
+      
+    </div>
+     <!--Form inputs upper row -->
+      
+  </form>
+      
+  <script>
+    window.onload = function () {
+      editorToTextarea('modifyCodeHTML', 'textareaHTML', 'html');
+    }
+  </script>
 
 
 @endsection

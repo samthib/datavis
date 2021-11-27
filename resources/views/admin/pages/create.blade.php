@@ -36,17 +36,23 @@
         <a href="{{ route('admin.pages.index') }}" class="btn btn-danger">Cancel</a>
       </div><!-- Form buttons -->
 
-      <!-- Content -->
+      <!-- HTML Editor -->
       <div class="form-group col-md-12">
-        <label for="content">Content</label>
-        <textarea id="quill-editor-target" name="content" hidden>{!! old('content') !!}</textarea>
-        <div id="quill-editor" class="form-control" style="height: 350px;">{!! old('content') !!}</div>
-      </div><!-- Content -->
+        <p>HTML</p>
+        <pre id="modifyCodeHTML" class="vh-100 rounded">{!! old('content') ?? "<!-- Write your code ... -->" !!}</pre>
+        <textarea id="textareaHTML" class="textInput" name="content" hidden>{!! old('content') !!}</textarea>
+      </div><!-- HTML Editor -->
 
 
   </div><!--Form inputs upper row -->
 
 </form>
 
+
+<script>
+window.onload = function () {
+      editorToTextarea('modifyCodeHTML', 'textareaHTML', 'html');
+    }
+</script>
 
 @endsection

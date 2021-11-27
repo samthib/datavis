@@ -36,16 +36,32 @@
         <a href="{{ route('admin.pages.index') }}" class="btn btn-danger">Cancel</a>
       </div><!-- Form buttons -->
 
-      <!-- Content -->
-      <div class="form-group col-md-12">
-        <label for="content">Content</label>
-        <textarea id="quill-editor-target" name="content" hidden>{!! $page->content !!}</textarea>
-        <div id="quill-editor" class="form-control" style="height: 350px;">{!! $page->content !!}</div>
-      </div><!-- Content -->
+      <!-- HTML Editor -->
+      <div class="form-group col-md-6">
+        <p>HTML</p>
+        <pre id="modifyCodeHTML" class="vh-100 rounded">{{ $page->content ?? "<!-- Write your code ... -->" }}</pre>
+        <textarea id="textareaHTML" class="textInput" name="content" hidden>{{ $page->content }}</textarea>
+      </div><!-- HTML Editor -->
+
+
+      <!-- Responsive Iframe container -->
+      <div class="form-group col-md-6">
+      <p>View</p>
+        <div class="embed-responsive embed-responsive-16by9 vh-100 rounded">
+          <iframe class="embed-responsive-item iframe-chart" src="{{ route('pages.show', $page) }}"
+          allowfullscreen></iframe>
+        </div>
+      </div><!-- Responsive Iframe container -->
+
 
     </div><!--Form inputs upper row -->
 
   </form>
 
+    <script>
+      window.onload = function () {
+        editorToTextarea('modifyCodeHTML', 'textareaHTML', 'html');
+      }
+    </script>
 
 @endsection

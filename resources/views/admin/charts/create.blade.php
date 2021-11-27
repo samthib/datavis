@@ -82,23 +82,17 @@
 
       <!-- JS Editor -->
       <div class="form-group col-md-6">
-        <P>Javascript</P>
-        <pre id="modifyCodeJS" class="vh-100 rounded">
-          {{ old('js') ?? "// Write your code ..." }}
-        </pre>
+        <p>Javascript</p>
+        <pre id="modifyCodeJS" class="vh-100 rounded">{{ old('js') ?? "// Write your code ..." }}</pre>
+        <textarea id="textareaJS" class="textInput" name="js" hidden>{{ old('js') }}</textarea>
       </div><!-- JS Editor -->
 
       <!-- CSS Editor -->
       <div class="form-group col-md-6">
-        <P>CSS</P>
-        <pre id="modifyCodeCSS" class="vh-100 rounded">
-          {{ old('css') ?? "/* Write your code ... */" }}
-        </pre>
+        <p>CSS</p>
+        <pre id="modifyCodeCSS" class="vh-100 rounded">{{ old('css') ?? "/* Write your code ... */" }}</pre>
+        <textarea id="textareaCSS" class="textInput" name="css" hidden>{{ old('css') }}</textarea>
       </div><!-- CSS Editor -->
-
-      <!-- Undisplayed <textarea>, will be filled with the content of the correponding <div>  -->
-      <textarea id="textareaJS" class="textInput" name="js" hidden>{{ old('js') }}</textarea>
-      <textarea id="textareaCSS" class="textInput" name="css" hidden>{{ old('css') }}</textarea>
 
     </div><!-- Row editor -->
 

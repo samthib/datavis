@@ -84,7 +84,7 @@ class PageController extends Controller
 
       $page->update($validated);
 
-      return redirect()->route('admin.pages.index');
+      return back()->with('message', 'Page updated');
     }
 
     /**

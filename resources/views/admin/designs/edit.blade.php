@@ -46,7 +46,7 @@
       </div><!-- Hero image -->
 
       <!-- Logo image -->
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-3">
         <label class="w-100" for="logo">Logo image</label>
         <div class="text-center">
           <img class="img-fluid" style="max-height:350px" src="{!! asset('storage/'.$design->logo) !!}" alt="Hero">
@@ -55,20 +55,27 @@
       </div><!-- Logo image -->
 
       <!-- Site main color -->
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-3">
         <label for="color">Color</label>
         <input id="color" name="color" type="color" class="form-control" value="{{ $design->color }}" required>
       </div><!-- Site main color -->
 
-      <!-- Description -->
-      <div class="form-group col-md-8">
-        <label for="description">Description</label>
-        <textarea id="description" class="form-control" name="description" rows="5">{{ $design->description }}</textarea>
-      </div><!-- escription -->
+      <!-- HTML Editor -->
+      <div class="form-group col-md-12">
+        <p>Description</p>
+        <pre id="modifyCodeHTML" class="vh-100 rounded">{{ $design->description ?? "<!-- Write your code ... -->" }}</pre>
+        <textarea id="textareaHTML" class="textInput" name="description" hidden>{{ $design->description }}</textarea>
+      </div><!-- HTML Editor -->
 
     </div><!--Form inputs upper row -->
 
   </form>
+
+  <script>
+  window.onload = function () {
+    editorToTextarea('modifyCodeHTML', 'textareaHTML', 'html');
+  }
+  </script>
 
 
 @endsection
