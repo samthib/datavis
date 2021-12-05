@@ -2,45 +2,45 @@
 
 @section('admin-content')
 
-  <x-admin.header.create-component plural-name="{{ __('Libraries') }}" title="{{ __('New Library') }}" :index-link="route('admin.libraries.index')" />
+  <x-admin.header.create-component plural-name="{{ __('Medias') }}" title="{{ __('New Media') }}" :index-link="route('admin.medias.index')" />
 
 
-  <form id="form" action="{{ route('admin.libraries.store') }}" method="post">
+  <form id="form" action="{{ route('admin.medias.store') }}" method="post" enctype="multipart/form-data">
     @csrf
 
     <!--Form inputs upper row -->
     <div class="row">
 
-      <!-- Library name -->
+      <!-- Media name -->
       <div class="form-group col-md-4">
         <label for="name">Name</label>
         <input id="name" name="name" type="text" class="form-control" value="{{ old('name') }}" required>
-      </div><!-- Library name -->
+      </div><!-- Media name -->
 
-      <!-- File type -->
+      <!-- Media type -->
       <div class="form-group col-md-2">
         <label for="type">Type</label>
         <select id="type" name="type" type="text" class="form-control" required>
-          <option {{ old('type')=='javascript' ? 'selected' : '' }}>javascript</option>
-          <option {{ old('type')=='css' ? 'selected' : '' }}>css</option>
+          <option {{ old('type') == 'image' ? 'selected' : '' }}>image</option>
+          <option {{ old('type') == 'video' ? 'selected' : '' }}>video</option>
         </select>
-      </div><!-- File type -->
+      </div><!-- Media type -->
 
-      <!-- Library link -->
+      <!-- Media file -->
       <div class="form-group col-md-4">
-        <label for="link">Library link</label>
-        <input id="link" name="link" type="text" class="form-control" value="{{ old('link') }}" required>
-      </div><!-- Library link -->
+        <label for="file">Media file</label>
+        <input id="file" name="file" type="file" class="form-control-file" required>
+      </div><!-- Media file -->
 
       <!-- Form buttons -->
       <div class="form-group col-md-2 d-flex align-items-end justify-content-end">
         <!-- Action buttons -->
         <button type="submit" form="form" class="btn btn-primary mr-1">Save</button>
-        <a href="{{ route('admin.libraries.index') }}" class="btn btn-danger">Cancel</a>
+        <a href="{{ route('admin.medias.index') }}" class="btn btn-danger">Cancel</a>
       </div><!-- Form buttons -->
 
       <!-- Description -->
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-9">
         <label for="description">Description</label>
         <textarea id="description" class="form-control" name="description" rows="5">{{ old('description') }}</textarea>
       </div><!-- Description -->

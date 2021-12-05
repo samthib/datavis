@@ -31,7 +31,7 @@
         <div class="col-12 col-md-6 d-flex flex-column align-items-center justify-content-start px-lg-5">
           <div class="bg-dark overflow-auto text-center shadow w-100" style="min-height: 300px; border-radius: 0 0 21px 21px;">
             <h4 class="display-5 pt-5">{{ $chart->subtitle }}</h4>
-            <p class="py-2 px-3 px-md-4">{{ substr($chart->description, 0, 350).' ...' }}</p>
+            <p class="py-2 px-3 px-md-4">{{ Str::limit($chart->description, 350) }}</p>
           </div>
           <a class="btn btn-outline-dark btn-lg my-1 p-1" href="{{ route('charts.show', $chart)  }}" role="button">Voir plus</a>
         </div><!-- Description part -->

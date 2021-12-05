@@ -17,7 +17,10 @@ class ChartController extends Controller
      */
     public function shadow(Chart $chart)
     {
-      return view('charts.shadow', compact('chart'));
+      $scripts = $chart->libraries->where('type', 'javascript');
+      $styles = $chart->libraries->where('type', 'css');
+
+      return view('charts.shadow', compact('chart', 'scripts', 'styles'));
     }
 
     /**
@@ -27,7 +30,7 @@ class ChartController extends Controller
      */
     public function index()
     {
-      $charts = Chart::where('available', 1)->orderBy('id', 'desc')->simplePaginate(6);
+      $charts = Chart::where('available', 1)->orderBy('id', 'desc')->simplePaginate(15);
 
       return view('charts.index', compact('charts'));
     }

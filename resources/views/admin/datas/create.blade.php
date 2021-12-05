@@ -21,11 +21,11 @@
       <div class="form-group col-md-2">
         <label for="type">Type</label>
         <select id="type" name="type" type="text" class="form-control" required>
-          <option {{ old('type') == 'JSON' ? 'selected' : '' }}>JSON</option>
-          <option {{ old('type') == 'CSV' ? 'selected' : '' }}>CSV</option>
-          <option {{ old('type') == 'TSV' ? 'selected' : '' }}>TSV</option>
-          <option {{ old('type') == 'EXCEL' ? 'selected' : '' }}>EXCEL</option>
-          <option {{ old('type') == 'TEXT' ? 'selected' : '' }}>TEXT</option>
+          <option {{ old('type') == 'json' ? 'selected' : '' }}>json</option>
+          <option {{ old('type') == 'csv' ? 'selected' : '' }}>csv</option>
+          <option {{ old('type') == 'tsv' ? 'selected' : '' }}>tsv</option>
+          <option {{ old('type') == 'excel' ? 'selected' : '' }}>excel</option>
+          <option {{ old('type') == 'text' ? 'selected' : '' }}>text</option>
         </select>
       </div><!-- Data type -->
 
@@ -43,7 +43,7 @@
       </div><!-- Form buttons -->
 
       <!-- Description -->
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-9">
         <label for="description">Description</label>
         <textarea id="description" class="form-control" name="description" rows="5">{{ old('description') }}</textarea>
       </div><!-- Description -->

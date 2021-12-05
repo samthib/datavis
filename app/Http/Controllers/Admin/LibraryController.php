@@ -17,7 +17,7 @@ class LibraryController extends Controller
      */
     public function index()
     {
-      $libraries = Library::orderBy('name', 'asc')->orderBy('version', 'asc')->simplePaginate(20);
+      $libraries = Library::orderBy('name', 'asc')->orderBy('type', 'asc')->simplePaginate(20);
 
       return view('admin.libraries.index', compact('libraries'));
     }
@@ -43,7 +43,7 @@ class LibraryController extends Controller
       /* Validation rules */
       $validated = $request->validated();
 
-      $library = Library::create($validated);
+      Library::create($validated);
 
       return redirect()->route('admin.libraries.index')->with('message', 'Library recorded');
     }

@@ -21,11 +21,11 @@
         <div class="form-group col-md-2">
           <label for="type">Type</label>
           <select id="type" name="type" type="text" class="form-control" required>
-            <option {{ ($data->type == 'JSON') ? 'selected' : '' }}>JSON</option>
-            <option {{ ($data->type == 'CSV') ? 'selected' : '' }}>CSV</option>
-            <option {{ ($data->type == 'TSV') ? 'selected' : '' }}>TSV</option>
-            <option {{ ($data->type == 'EXCEL') ? 'selected' : '' }}>EXCEL</option>
-            <option {{ ($data->type == 'TEXT') ? 'selected' : '' }}>TEXT</option>
+            <option {{ ($data->type == 'json') ? 'selected' : '' }}>json</option>
+            <option {{ ($data->type == 'csv') ? 'selected' : '' }}>csv</option>
+            <option {{ ($data->type == 'tsv') ? 'selected' : '' }}>tsv</option>
+            <option {{ ($data->type == 'excel') ? 'selected' : '' }}>excel</option>
+            <option {{ ($data->type == 'text') ? 'selected' : '' }}>text</option>
           </select>
         </div><!-- Data type -->
 
@@ -43,7 +43,7 @@
         </div><!-- Form buttons -->
 
         <!-- Description -->
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-9">
           <label for="description">Description</label>
           <textarea id="description" class="form-control" name="description" rows="5">{{ $data->description }}</textarea>
         </div><!-- Description -->
@@ -51,12 +51,15 @@
 
       </div><!--Form inputs upper row -->
 
+      <!-- Link to file -->
+      <div class="alert alert-primary" role="alert">
+        <a href="{{ asset('storage/'.$data->file) }}" class="alert-link" target="blank">{{ asset('storage/'.$data->file) }}</a>
+      </div><!-- Link to file -->
+
       <!-- Row display Datas -->
       <div class="row">
         <div class="col-md-12">
-          <pre id="displayCode" class="vh-100 rounded">
-            {!! $content !!}
-          </pre>
+          <pre id="displayCode" class="vh-100 rounded">{!! $content !!}</pre>
         </div>
       </div><!-- Row display Datas -->
 

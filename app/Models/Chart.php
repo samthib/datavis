@@ -20,4 +20,14 @@ class Chart extends Model
     {
       return $this->belongsToMany('App\Models\Data');
     }
+
+    public function medias()
+    {
+      return $this->belongsToMany('App\Models\Media');
+    }
+
+    public function files()
+    {
+      return $this->belongsToMany('App\Models\File');
+    }
 }

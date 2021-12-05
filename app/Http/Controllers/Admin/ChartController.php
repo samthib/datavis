@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Data;
+use App\Models\File;
 use App\Models\Chart;
-use App\Models\Library;
-use Illuminate\Support\Arr;
+use App\Models\Media;
 // use Illuminate\Http\Request;
 
+use App\Models\Library;
+use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChartRequests;
 
@@ -33,10 +35,12 @@ class ChartController extends Controller
      */
     public function create()
     {
-      $libraries = Library::all();
-      $datas = Data::all();
+      $libraries = Library::orderBy('name', 'asc')->get();
+      $datas = Data::orderBy('name', 'asc')->get();
+      $medias = Media::orderBy('name', 'asc')->get();
+      $files = File::orderBy('name', 'asc')->get();
 
-      return view('admin.charts.create', compact('libraries', 'datas'));
+      return view('admin.charts.create', compact('libraries', 'datas', 'medias', 'files'));
     }
 
     /**
@@ -48,14 +52,15 @@ class ChartController extends Controller
     public function store(ChartRequests $request)
     {
       $validated = $request->validated();
-
-      $validated = Arr::except($validated, ['libraries', 'datas']);
+      $validated = Arr::except($validated, ['libraries', 'datas', 'files', 'medias']);
       $validated['available'] = $request->has('available');
       
       $chart = Chart::create($validated);
       
       $chart->libraries()->sync($request->libraries);
       $chart->datas()->sync($request->datas);
+      $chart->files()->sync(request('files'));//$request->files refere to files uploded
+      $chart->medias()->sync($request->medias);
 
       return redirect()->route('admin.charts.index')->with('message', 'Chart recorded');
     }
@@ -79,10 +84,12 @@ class ChartController extends Controller
      */
     public function edit(Chart $chart)
     {
-      $libraries = Library::all();
-      $datas = Data::all();
+      $libraries = Library::orderBy('name', 'asc')->get();
+      $datas = Data::orderBy('name', 'asc')->get();
+      $medias = Media::orderBy('name', 'asc')->get();
+      $files = File::orderBy('name', 'asc')->get();
 
-      return view('admin.charts.edit', compact('chart', 'libraries', 'datas'));
+      return view('admin.charts.edit', compact('chart', 'libraries', 'datas', 'medias', 'files'));
     }
 
     /**
@@ -96,13 +103,15 @@ class ChartController extends Controller
     {
       $validated = $request->validated();
 
-      $validated = Arr::except($validated, ['libraries', 'datas']);
+      $validated = Arr::except($validated, ['libraries', 'datas', 'files', 'medias']);
       $validated['available'] = $request->has('available');
 
       $chart->update($validated);
       
       $chart->libraries()->sync($request->libraries);
       $chart->datas()->sync($request->datas);
+      $chart->files()->sync(request('files'));//$request->files refere to files uploded
+      $chart->medias()->sync($request->medias);
       
       return back()->with('message', 'Chart updated');
     }

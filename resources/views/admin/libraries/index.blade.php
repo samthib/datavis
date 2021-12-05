@@ -10,7 +10,7 @@
         <tr>
           <th>#</th>
           <th>Name</th>
-          <th>Version</th>
+          <th>Type</th>
           <th>Description</th>
           <th>Link</th>
           <th>Date</th>
@@ -22,9 +22,9 @@
           <tr>
             <td class="align-middle"><b>{{ $library->id }}</b></td>
             <td class="align-middle">{{ Str::limit($library->name, 20) }}</td>
-            <td class="align-middle">{{ Str::limit($library->version, 20) }}</td>
+            <td class="align-middle">{{ Str::limit($library->type, 20) }}</td>
             <td class="align-middle">{{ Str::limit($library->description, 20) }}</td>
-            <td class="align-middle"><a href="{{ $library->link }}" target="_blank">{{ Str::limit($library->link, 60) }}</a></td>
+            <td class="align-middle"><a href="{{ $library->link }}" target="_blank">{{ Str::limit($library->link, 40) }}</a></td>
             <td class="align-middle">{{ $library->created_at->format('Y-m-d h:i') }}</td>
             <td class="text-center">
               <x-admin.table.button-show-component :show-link="route('admin.libraries.show', $library)" />

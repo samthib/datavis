@@ -58,32 +58,74 @@
         <!-- Library select -->
         <div class="form-group col-md-4">
           <label for="libraries">Libraries</label>
-          <select id="libraries" name="libraries[]" class="custom-select" size="5" multiple required>
+          <select id="libraries" name="libraries[]" class="custom-select" size="5" multiple>
             @foreach ($libraries as $key => $library)
-              <option value="{{ $library->id }}" {{ ($chart->libraries->pluck('id')->contains($library->id)) ? 'selected' : '' }}>{{ $library->name." - ".$library->version }}</option>
+              <option value="{{ $library->id }}" {{ ($chart->libraries->pluck('id')->contains($library->id)) ? 'selected' : '' }}>{{ $library->name." - ".$library->type }}</option>
             @endforeach
           </select>
         </div><!-- Library select -->
 
         <!-- Data select -->
         <div class="form-group col-md-4">
-          <label for="datas">Datas</label>
-          <select id="datas" name="datas[]" class="custom-select" size="5" multiple>
+          <label for="datas[]">Datas</label>
+          <select id="datas[]" name="datas[]" class="custom-select" size="5" multiple onchange="toggleLinks(this, 'data-link', 'links-container')">
             @foreach ($datas as $key => $data)
-              <option value="{{ $data->id }}" {{ ($chart->datas->pluck('id')->contains($data->id)) ? 'selected' : '' }}>{{ $data->name." - ".$data->type }}</option>
+              <option value="{{ $data->id }}" data-link="{{ url('storage/'.$data->file) }}" {{ ($chart->datas->pluck('id')->contains($data->id)) ? 'selected' : '' }}>{{ $data->name." - ".$data->type }}</option>
             @endforeach
           </select>
+
+          <!-- Links to file -->
+          <div id="links-container">                    
+            @foreach ($chart->datas as $data)
+            <div class="alert alert-primary mt-2 mb-0 text-break" role="alert">
+              <a id="data-link" href="{{ asset('storage/'.$data->file) }}" class="alert-link text-break" target="blank">{{
+                asset('storage/'.$data->file) }}</a>
+            </div>
+            @endforeach
+          </div><!-- Links to file -->
         </div><!-- Data select -->
 
-        <!-- Data display -->
-        <div class="form-group col-md-8">
-          <label for="files[]">Links</label>
-          <textarea id="files" class="form-control" rows="5">
-            @foreach ($chart->datas as $key => $data)
-              {{ url('storage/'.$data->file) }}
+        <!-- File select -->
+        <div class="form-group col-md-4">
+          <label for="files[]">Files</label>
+          <select id="files[]" name="files[]" class="custom-select" size="5" multiple onchange="toggleLinks(this, 'data-file', 'files-container')">
+            @foreach ($files as $key => $file)
+            <option value="{{ $file->id }}" data-file="{{ url('storage/'.$file->file) }}" {{ ($chart->files->pluck('id')->contains($file->id)) ? 'selected' : '' }}>{{
+              $file->name." - ".$file->type }}</option>
             @endforeach
-          </textarea>
-        </div><!-- Data display -->
+          </select>
+        
+          <!-- Links to file -->
+          <div id="files-container">
+            @foreach ($chart->files as $file)
+            <div class="alert alert-primary mt-2 mb-0 text-break" role="alert">
+              <a id="file-link" href="{{ asset('storage/'.$file->file) }}" class="alert-link text-break" target="blank">{{
+                asset('storage/'.$file->file) }}</a>
+            </div>
+            @endforeach
+          </div><!-- Links to file -->
+        </div><!-- File select -->
+
+        <!-- Media select -->
+        <div class="form-group col-md-4">
+          <label for="medias[]">Medias</label>
+          <select id="medias[]" name="medias[]" class="custom-select" size="5" multiple onchange="toggleLinks(this, 'data-media', 'medias-container')">
+            @foreach ($medias as $key => $media)
+            <option value="{{ $media->id }}" data-media="{{ url('storage/'.$media->file) }}" {{ ($chart->medias->pluck('id')->contains($media->id)) ? 'selected' : '' }}>{{
+              $media->name." - ".$media->type }}</option>
+            @endforeach
+          </select>
+        
+          <!-- Link to file -->
+          <div id="medias-container">
+            @foreach ($chart->medias as $media)
+            <div class="alert alert-primary mt-2 mb-0 text-break" role="alert">
+              <a id="media-link" href="{{ asset('storage/'.$media->file) }}" class="alert-link text-break" target="blank">{{
+                asset('storage/'.$media->file) }}</a>
+            </div>
+            @endforeach
+          </div><!-- Link to file -->
+        </div><!-- Media select -->
 
       </div><!--Form inputs upper row -->
 
@@ -109,10 +151,6 @@
 
     </form>
 
-    <script>
-    window.onload = function () {
-      editorToTextarea('modifyCodeJS', 'textareaJS', 'javascript');
-      editorToTextarea('modifyCodeCSS', 'textareaCSS', 'css');
-    }
-    </script>
+    @include('admin.charts.partials.scripts')
+
   @endsection

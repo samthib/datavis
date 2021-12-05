@@ -31,18 +31,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function()
     Route::get('/', function() {
       return redirect()->route('admin.dashboards.index');
     });
+
     Route::get('/dashboards', [Admin\DashboardController::class, 'index'])->name('dashboards.index');
 
-    /* Route to manage Admin's Board Charts */
     Route::resource('/charts', Admin\ChartController::class);
 
-    /* Route to manage Admin's Board Libraries */
     Route::resource('/libraries', Admin\LibraryController::class);
 
-    /* Route to manage Admin's Board Datas */
     Route::resource('/datas', Admin\DataController::class);
 
-    /* Route to manage Admin's Board Users */
+    Route::resource('/files', Admin\FileController::class);
+
+    Route::resource('/medias', Admin\MediaController::class);
+
     Route::resource('/users', Admin\UserController::class);
 
     /* Route to manage the application's Design */
@@ -54,7 +55,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function()
     Route::get('/messages/sent', [Admin\MessageController::class, 'sent'])->name('messages.sent.index');
     Route::resource('/messages', Admin\MessageController::class, ['except' => ['index', 'edit']]);
 
-    /* Route to manage the application's Pages */
     Route::resource('/pages', Admin\PageController::class);
   });
 });

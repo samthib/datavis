@@ -20,9 +20,22 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link {{ (Str::contains(url()->current(), 'files')) ? 'active' : '' }}"
+          href="{!! route('admin.files.index') !!}">
+          <span data-feather="file-plus"></span>
+          Files
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link {{ (Str::contains(url()->current(), 'datas')) ? 'active' : '' }}" href="{!! route('admin.datas.index') !!}">
           <span data-feather="database"></span>
           Datas
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ (Str::contains(url()->current(), 'medias')) ? 'active' : '' }}" href="{!! route('admin.medias.index') !!}">
+          <span data-feather="image"></span>
+          Medias
         </a>
       </li>
       <li class="nav-item">

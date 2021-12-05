@@ -14,7 +14,7 @@ class VisitMiddlewareTest extends TestCase
     {
         $visitLast = Visit::latest()->first();
 
-        $response = $this->get('/');
+        $this->get('/');
 
         $visitNew = Visit::latest()->first();
 

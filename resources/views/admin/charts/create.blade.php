@@ -47,32 +47,48 @@
       <!-- Library select -->
       <div class="form-group col-md-4">
         <label for="libraries[]">Libraries</label>
-        <select id="libraries[]" name="libraries[]" class="custom-select" size="5" multiple required>
+        <select id="libraries[]" name="libraries[]" class="custom-select" size="5" multiple>
           @foreach ($libraries as $key => $library)
-            <option value="{{ $library->id }}" {{ in_array($library->id, old('libraries') ?? []) ? 'selected' : '' }}>{{ $library->name." - ".$library->version }}</option>
+            <option value="{{ $library->id }}" {{ in_array($library->id, old('libraries') ?? []) ? 'selected' : '' }}>{{ $library->name." - ".$library->type }}</option>
           @endforeach
         </select>
       </div><!-- Library select -->
 
-      <!-- Data select -->
-      <div class="form-group col-md-4">
-        <label for="datas[]">Datas</label>
-        <select id="datas[]" name="datas[]" class="custom-select" size="5" multiple>
-          @foreach ($datas as $key => $data)
-            <option value="{{ $data->id }}" {{ in_array($data->id, old('datas') ?? []) ? 'selected' : '' }}>{{ $data->name." - ".$data->type }}</option>
-          @endforeach
-        </select>
-      </div><!-- Data select -->
+        <!-- Data select -->
+        <div class="form-group col-md-4">
+          <label for="datas[]">Datas</label>
+          <select id="datas[]" name="datas[]" class="custom-select" size="5" multiple onchange="toggleLinks(this, 'data-link', 'links-container')">
+            @foreach ($datas as $key => $data)
+              <option value="{{ $data->id }}" data-link="{{ url('storage/'.$data->file) }}">{{ $data->name." - ".$data->type }}</option>
+            @endforeach
+          </select>
+          <div id="links-container"></div>
+        </div><!-- Data select -->
 
-      <!-- Data display -->
-      <div class="form-group col-md-8">
-        <label for="files[]">Links</label>
-        <textarea id="files" class="form-control" rows="5">
-          @foreach ($datas as $key => $data)
-            {{ url('storage/'.$data->file) }}
-          @endforeach
-        </textarea>
-      </div><!-- Data display -->
+        <!-- File select -->
+        <div class="form-group col-md-4">
+          <label for="files[]">Files</label>
+            <select id="files[]" name="files[]" class="custom-select" size="5" multiple onchange="toggleLinks(this, 'data-file', 'files-container')">
+              @foreach ($files as $key => $file)
+              <option value="{{ $file->id }}" data-file="{{ url('storage/'.$file->file) }}">{{ $file->name." - ".$file->type }}
+              </option>
+              @endforeach
+            </select>
+          <div id="files-container"></div>
+        </div><!-- File select -->
+
+        <!-- Media select -->
+        <div class="form-group col-md-4">
+          <label for="medias[]">medias</label>
+          <select id="medias[]" name="medias[]" class="custom-select" size="5" multiple
+            onchange="toggleLinks(this, 'data-media', 'medias-container')">
+            @foreach ($medias as $key => $media)
+            <option value="{{ $media->id }}" data-media="{{ url('storage/'.$media->file) }}">{{ $media->name." - ".$media->type }}
+            </option>
+            @endforeach
+          </select>
+          <div id="medias-container"></div>
+        </div><!-- Media select -->
 
     </div><!--Form inputs upper row -->
 
@@ -98,10 +114,6 @@
 
   </form>
 
-  <script>
-  window.onload = function () {
-    editorToTextarea('modifyCodeJS', 'textareaJS', 'javascript');
-    editorToTextarea('modifyCodeCSS', 'textareaCSS', 'css');
-  }
-  </script>
+  @include('admin.charts.partials.scripts')
+
 @endsection

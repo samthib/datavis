@@ -31,6 +31,8 @@ class ChartRequests extends FormRequest
           'css' => 'nullable|string',
           'libraries.*' => 'integer',
           'datas.*' => 'integer',
+          'files.*' => 'integer',
+          'medias.*' => 'integer',
           'available' => 'filled',
         ];
     }

@@ -23,7 +23,7 @@
             <td><b>{{ $data->id }}</b></td>
             <td>{{ Str::limit($data->name, 20) }}</td>
             <td>{{ $data->type }}</td>
-            <td><a href="{!! url('storage/'.$data->file) !!}" target="_blank">{{ Str::limit(url('storage/'.$data->file), 60) }}</a></td>
+            <td><a href="{!! url('storage/'.$data->file) !!}" target="_blank">{{ Str::limit(url('storage/'.$data->file), 40) }}</a></td>
             <td>{{ Str::limit($data->description, 20) }}</td>
             <td>{{ $data->created_at->format('Y-m-d h:i') }}</td>
             <td class="text-center">
