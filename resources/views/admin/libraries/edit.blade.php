@@ -62,10 +62,6 @@
 </form>
 
 
-<script>
-  window.onload = function () {
-    editorDisplay('displayLibraries', '{{ $library->type }}');
-  }
-</script>
+    @include('admin.libraries.partials.scripts')
 
 @endsection

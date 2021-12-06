@@ -66,11 +66,6 @@
     </form>
 
 
-    <script>
-    window.onload = function () {
-      editorDisplay('displayCode', 'json');
-    }
-    </script>
-  </form>
+  @include('admin.datas.partials.scripts')
 
 @endsection

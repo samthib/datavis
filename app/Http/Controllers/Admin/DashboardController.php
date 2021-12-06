@@ -20,7 +20,7 @@ class DashboardController extends Controller
 
       $visits = Visit::latest()->paginate(20);
 
-      return view('admin.index', compact('user', 'visits'));
+      return view('admin.dashboards.index', compact('user', 'visits'));
     }
 
     /**

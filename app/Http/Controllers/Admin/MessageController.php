@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use App\Models\Design;
-// use Illuminate\Http\Request;
-
 use App\Mail\SendEmail;
 use App\Models\Message;
 use Illuminate\Mail\Markdown;

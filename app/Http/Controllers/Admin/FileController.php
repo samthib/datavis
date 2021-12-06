@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\File;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Requests\FileRequests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;

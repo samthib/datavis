@@ -5,13 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Actions\Jetstream\DeleteUser;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Jetstream\DeleteTeam;
 use App\Actions\Fortify\UpdateUserProfileInformation;
-
 
 class UserController extends Controller
 {

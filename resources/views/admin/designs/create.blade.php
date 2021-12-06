@@ -68,11 +68,7 @@
       
   </form>
       
-  <script>
-    window.onload = function () {
-      editorToTextarea('modifyCodeHTML', 'textareaHTML', 'html');
-    }
-  </script>
 
+  @include('admin.designs.partials.scripts')
 
 @endsection

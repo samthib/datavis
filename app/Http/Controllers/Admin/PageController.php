@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Page;
-// use Illuminate\Http\Request;
-
 use App\Http\Requests\PageRequests;
 
 class PageController extends Controller

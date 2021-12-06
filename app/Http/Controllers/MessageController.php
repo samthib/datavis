@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Message;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\MessageRequests;
-
 use Illuminate\Support\Facades\Mail;
-
 use App\Mail\ContactEmail;
-
 
 class MessageController extends Controller
 {

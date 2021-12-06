@@ -49,10 +49,6 @@
 </form>
 
 
-<script>
-window.onload = function () {
-      editorToTextarea('modifyCodeHTML', 'textareaHTML', 'html');
-    }
-</script>
+    @include('admin.pages.partials.scripts')
 
 @endsection

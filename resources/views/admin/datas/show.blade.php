@@ -12,15 +12,11 @@
     <!-- Row display Datas -->
     <div class="row">
       <div class="col-md-12">
-        <pre id="displayDatas" class="vh-100 rounded">{!! $content !!}</pre>
+        <pre id="displayCode" class="vh-100 rounded">{!! $content !!}</pre>
       </div>
     </div><!-- Row display Datas -->
 
 
-    <script>
-    window.onload = function () {
-      editorDisplay('displayDatas', 'json');
-    }
-  </script>
+  @include('admin.datas.partials.scripts')
 
 @endsection

@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Chart;
 use App\Models\Design;
-//use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\DesignRequests;
 use Illuminate\Support\Facades\Storage;
 

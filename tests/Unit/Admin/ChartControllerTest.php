@@ -97,8 +97,10 @@ class ChartControllerTest extends TestCase
       'description' => 'azerty_update',
       'js' => 'azerty_update',
       'css' => 'azerty_update',
-      'libraries' => [12, 13, 14],
+      'libraries' => [3, 5, 6],
       'datas' => [5, 6, 7],
+      'files' => [1],
+      'medias' => [1],
       'available' => 1,
     ];
 

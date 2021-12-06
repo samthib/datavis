@@ -68,10 +68,7 @@
 
 </form>
 
-  <script>
-      window.onload = function () {
-        editorDisplay('displayFile', '{{ $file->type }}');
-      }
-  </script>
+
+  @include('admin.files.partials.scripts')
 
 @endsection

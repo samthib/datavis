@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chart;
-use App\Models\Design;
-use App\Models\Page;
 use Illuminate\Http\Request;
 
 class ChartController extends Controller
