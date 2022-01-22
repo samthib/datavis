@@ -37,6 +37,5 @@ class AppServiceProvider extends ServiceProvider
         'design' => Design::where('active', 1)->first(),
         'pages' => Page::where('title', '!=', 'A-propos')->get(),
       ]);
-
     }
 }

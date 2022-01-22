@@ -7,7 +7,6 @@ use Tests\TestCase;
 
 use App\Models\User;
 use App\Models\Chart;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ChartControllerTest extends TestCase
 {
@@ -45,18 +44,19 @@ class ChartControllerTest extends TestCase
   public function test_admin_store()
   {
     $datas = [
-      'title' => 'azerty',
-      'subtitle' => 'azerty',
-      'description' => 'azerty',
-      'js' => 'azerty',
-      'css' => 'azerty',
-      'libraries' => [5, 6, 7],
-      'datas' => [2, 3, 4],
+      'title' => 'My Chart',
+      'subtitle' => 'My subtitle',
+      'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+      'js' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+      'css' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+      // 'libraries' => [5, 6, 7],
+      // 'datas' => [2, 3, 4],
       'available' => 1,
     ];
 
     $response = $this->responseInit
-      ->post(route('admin.charts.store'), $datas);
+                     ->withoutMiddleware()
+                     ->post(route('admin.charts.store'), $datas);
 
     $response->assertStatus(302);
     $response->assertRedirect(route('admin.charts.index'));
@@ -65,7 +65,7 @@ class ChartControllerTest extends TestCase
 
   public function test_admin_show()
   {
-    $chart = Chart::first();
+    $chart = Chart::latest()->first();
 
     $response = $this->responseInit
       ->get(route('admin.charts.show', $chart));
@@ -92,21 +92,22 @@ class ChartControllerTest extends TestCase
     $chart = Chart::latest()->first();
 
     $datas = [
-      'title' => 'azerty_update',
-      'subtitle' => 'azerty_update',
-      'description' => 'azerty_update',
-      'js' => 'azerty_update',
-      'css' => 'azerty_update',
-      'libraries' => [3, 5, 6],
-      'datas' => [5, 6, 7],
-      'files' => [1],
-      'medias' => [1],
+      'title' => 'My Chart update',
+      'subtitle' => 'My subtitle update',
+      'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. update',
+      'js' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. update',
+      'css' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. update',
+      // 'libraries' => [5, 6, 7],
+      // 'datas' => [2, 3, 4],
+      // 'files' => [1],
+      // 'medias' => [1],
       'available' => 1,
     ];
 
     $response = $this->responseInit
-      ->from(route('admin.charts.edit', $chart))
-      ->put(route('admin.charts.update', $chart), $datas);
+                     ->withoutMiddleware()
+                     ->from(route('admin.charts.edit', $chart))
+                     ->put(route('admin.charts.update', $chart), $datas);
 
     $response->assertStatus(302);
     $response->assertRedirect(route('admin.charts.edit', $chart));
@@ -118,8 +119,9 @@ class ChartControllerTest extends TestCase
     $chart = Chart::latest()->first();
 
     $response = $this->responseInit
-      ->from(route('admin.charts.index'))
-      ->delete(route('admin.charts.update', $chart));
+                     ->withoutMiddleware()
+                     ->from(route('admin.charts.index'))
+                     ->delete(route('admin.charts.update', $chart));
       
     $response->assertStatus(302);
     $response->assertRedirect(route('admin.charts.index'));

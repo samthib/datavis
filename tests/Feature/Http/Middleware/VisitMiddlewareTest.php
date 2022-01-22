@@ -3,16 +3,19 @@
 namespace Tests\Feature\Http\Middleware;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 use App\Models\Visit;
-
 class VisitMiddlewareTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function test_increment_visit_counter()
     {
-        $visitLast = Visit::latest()->first();
+        $visitLast = Visit::create([
+            'count' => 0,
+            'date' => now()
+        ]);
 
         $this->get('/');
 

@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarsExample04">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2" href="{{ route('charts.index') }}" aria-label="Product">
-        <img width="37" height="24" src="{{ asset('storage/'.$design->logo) }}" alt="Logo">
+        <img width="37" height="24" src="{{ asset('storage/'.($design->logo ?? '')) }}" alt="Logo">
       </a>
       <a class="py-2 d-md-inline-block {{ (Str::contains(Route::currentRouteName(), 'abouts')) ? 'text-white' : '' }}" href="{{ route('pages.abouts') }}">A-propos</a>
       <a class="py-2 d-md-inline-block {{ (Str::contains(Route::currentRouteName(), 'features')) ? 'text-white' : '' }}" href="{{ route('pages.features') }}">Fonctionnement</a>

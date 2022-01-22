@@ -5,6 +5,8 @@ namespace Tests\Unit;
 use Tests\TestCase;
 // use PHPUnit\Framework\TestCase;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use App\Models\Chart;
 use App\Models\Design;
 use App\Models\Page;
@@ -12,9 +14,11 @@ use App\Models\User;
 
 class RouteTest extends TestCase
 {
+  // use RefreshDatabase;
+
   public function test_routes_charts()
   {
-    $chart = Chart::first();
+    $chart = Chart::factory()->create();
 
     $this->route_url_equals_route_name('/', 'charts.index');
     $this->route_url_equals_route_name('/charts/'.$chart->title, 'charts.show', [$chart]);
@@ -29,7 +33,7 @@ class RouteTest extends TestCase
 
   public function test_routes_pages()
   {
-    $page = Page::first();
+    $page = Page::factory()->create();
 
     $this->route_url_equals_route_name('/A-propos', 'pages.abouts');
     $this->route_url_equals_route_name('/features', 'pages.features');
@@ -50,7 +54,7 @@ class RouteTest extends TestCase
 
   public function test_routes_admin_designs()
   {
-    $design = Design::first();
+    $design = Design::factory()->create();
 
     $this->route_url_equals_route_name('/admin/designs/shadow/'.$design->id, 'admin.designs.shadow', [$design]);
   }
@@ -61,7 +65,7 @@ class RouteTest extends TestCase
     $this->route_url_equals_route_name('/admin/messages/sent', 'admin.messages.sent.index');
   }
 
-  public function route_url_equals_route_name(String $url, String $name, Array $params = null)
+  private function route_url_equals_route_name(String $url, String $name, Array $params = null)
   {
     $this->assertSame(url($url), route($name, $params));
   }

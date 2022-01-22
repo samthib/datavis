@@ -8,6 +8,7 @@ use App\Models\Chart;
 use App\Models\Media;
 use App\Models\Library;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChartRequests;
 
@@ -50,6 +51,7 @@ class ChartController extends Controller
     {
       $validated = $request->validated();
       $validated = Arr::except($validated, ['libraries', 'datas', 'files', 'medias']);
+      $validated['title'] = Str::slug($validated['title'], '_');
       $validated['available'] = $request->has('available');
       
       $chart = Chart::create($validated);
@@ -101,6 +103,7 @@ class ChartController extends Controller
       $validated = $request->validated();
 
       $validated = Arr::except($validated, ['libraries', 'datas', 'files', 'medias']);
+      $validated['title'] = Str::slug($validated['title'], '_');
       $validated['available'] = $request->has('available');
 
       $chart->update($validated);

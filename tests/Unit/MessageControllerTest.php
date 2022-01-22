@@ -5,16 +5,13 @@ namespace Tests\Unit;
 use Tests\TestCase;
 // use PHPUnit\Framework\TestCase;
 
-// use Illuminate\Foundation\Testing\WithoutMiddleware;
-
 use App\Mail\ContactEmail;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class MessageControllerTest extends TestCase
 {
-  // use WithoutMiddleware;
+  use RefreshDatabase;
 
   public function test_create()
   {

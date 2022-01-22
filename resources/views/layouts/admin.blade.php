@@ -9,7 +9,7 @@
   <title>{{ __('Dashboard') }} {{ config('app.name', 'Laravel') }}</title>
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="{{ asset('storage/'.$design->logo) }}">
+  <link rel="shortcut icon" href="{{ asset('storage/'.($design->logo ?? '')) }}">
   
   @include('layouts.partials.admin.links')
 </head>

@@ -18,6 +18,7 @@ class VisitMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
+        /* User's IP adress */
         $ip = request()->ip();
 
         /* Visits counter */

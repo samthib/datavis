@@ -1,7 +1,7 @@
 <footer class="container-fluid pt-5 bg-dark">
   <div class="row">
     <div class="col-12 col-md">
-      <img width="37" height="24" src="{{ asset('storage/'.$design->logo) }}" alt="Logo">
+      <img width="37" height="24" src="{{ asset('storage/'.($design->logo ?? '')) }}" alt="Logo">
       <small class="d-block text-muted">
         <a class="text-light" href="http://samuel-thibault.fr" target="_blank"><b class="text-white">Samuel Thibault</b></a>
         &copy; 2017-2020
