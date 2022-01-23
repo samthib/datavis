@@ -51,7 +51,7 @@ class ChartController extends Controller
     {
       $validated = $request->validated();
       $validated = Arr::except($validated, ['libraries', 'datas', 'files', 'medias']);
-      $validated['title'] = Str::slug($validated['title'], '_');
+      $validated['slug'] = Str::slug($validated['title'], '_');
       $validated['available'] = $request->has('available');
       
       $chart = Chart::create($validated);
@@ -103,7 +103,7 @@ class ChartController extends Controller
       $validated = $request->validated();
 
       $validated = Arr::except($validated, ['libraries', 'datas', 'files', 'medias']);
-      $validated['title'] = Str::slug($validated['title'], '_');
+      $validated['slug'] = Str::slug($validated['title'], '_');
       $validated['available'] = $request->has('available');
 
       $chart->update($validated);

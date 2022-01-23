@@ -15,6 +15,7 @@ class CreateChartsTable extends Migration
     {
         Schema::create('charts', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->string('title')->nullable();
             $table->text('subtitle')->nullable();
             $table->text('description')->nullable();

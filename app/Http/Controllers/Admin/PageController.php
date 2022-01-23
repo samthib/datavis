@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Page;
+use Illuminate\Support\Str;
 use App\Http\Requests\PageRequests;
+use App\Http\Controllers\Controller;
 
 class PageController extends Controller
 {
@@ -40,6 +41,7 @@ class PageController extends Controller
     {
       /* Validation rules */
       $validated = $request->validated();
+      $validated['slug'] = Str::slug($validated['title'], '_');
 
       Page::create($validated);
 
@@ -79,6 +81,8 @@ class PageController extends Controller
     {
       /* Validation rules */
       $validated = $request->validated();
+      $validated['slug'] = Str::slug($validated['title'], '_');
+
 
       $page->update($validated);
 

@@ -28,7 +28,7 @@ class ChartController extends Controller
      */
     public function index()
     {
-      $charts = Chart::where('available', 1)->orderBy('id', 'desc')->simplePaginate(15);
+      $charts = Chart::where('available', 1)->orderBy('id', 'desc')->simplePaginate(8);
 
       return view('charts.index', compact('charts'));
     }

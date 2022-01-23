@@ -1,4 +1,4 @@
-<footer class="container-fluid pt-5 bg-dark">
+<footer class="container-fluid pt-2 pt-md-5 bg-dark">
   <div class="row">
     <div class="col-12 col-md">
       <img width="37" height="24" src="{{ asset('storage/'.($design->logo ?? '')) }}" alt="Logo">
