@@ -3,11 +3,11 @@
 @section('content')
 
   <!-- Email -->
-  <div class="d-md-flex flex-md-equal w-100 vh-100 text-white">
+  <div class="d-md-flex flex-md-equal text-white">
     <!-- Email part -->
     <div class="bg-dark py-1 pt-md-3 pb-md-5 text-center overflow-hidden">
-      <h2 class="display-5 my-5 py-3">Contactez moi</h2>
-      <div class="mx-auto w-50">
+      <h2 class="display-5 my-md-5 py-3">Contactez moi</h2>
+      <div class="mx-auto col-11 col-md-8 col-lg-6">
 
           @if (session()->has('message'))
             <div class="alert alert-info" role="alert">
@@ -48,7 +48,7 @@
                         @enderror
                       </fieldset>
                     </div>
-                    <button type="submit" class="btn btn-outline-light btn-lg">Envoyer</button>
+                    <button type="submit" class="btn btn-outline-light btn-lg my-1 my-md-3 my-lg-5">Envoyer</button>
                   </form>
 
               </div>

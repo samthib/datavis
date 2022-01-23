@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
 
       View::composer('*', function ($view) {
         $view->with('design', Design::where('active', 1)->first())
-        ->with('pages', Page::where('title', '!=', 'A-propos')->get());
+             ->with('pages', Page::where('title', '!=', 'A-propos')->get());
       });
     }
 }

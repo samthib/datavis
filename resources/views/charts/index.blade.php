@@ -33,7 +33,7 @@
             <h4 class="display-5 pt-5">{{ $chart->subtitle }}</h4>
             <p class="py-2 px-3 px-md-4">{{ Str::limit($chart->description, 350) }}</p>
           </div>
-          <a class="btn btn-outline-dark btn-lg my-1 p-1" href="{{ route('charts.show', $chart)  }}" role="button">Voir plus</a>
+          <a class="btn btn-outline-dark btn-lg my-1 my-md-3 my-lg-5 p-1" href="{{ route('charts.show', $chart)  }}" role="button">Voir plus</a>
         </div><!-- Description part -->
       </div><!-- Graph & Description Row -->
     @endforeach

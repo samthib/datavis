@@ -19,7 +19,7 @@
 
   @include('layouts.partials.master.header')
 
-  <main class="min-vh-100 border-bottom border-white">
+  <main class="border-bottom border-white">
     @yield('content')
   </main>
 
