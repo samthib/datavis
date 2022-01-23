@@ -34,15 +34,17 @@ class AppServiceProvider extends ServiceProvider
       Paginator::useBootstrap();
       
       /* Custom style on all views */
-      // View::share([
-        //   'design' => Design::where('active', 1)->first(),
-        //   'pageNames' => Page::where('title', '!=', 'A-propos')->get(),
-        // ]);
-        
+      /* Use of View::composer in the guest area for the tests*/
+      if (Str::contains(url()->current(), 'admin')) {
+        View::share([
+            'design' => Design::where('active', 1)->first(),
+            'footerPages' => Page::where('title', '!=', 'A-propos')->get(),
+          ]);
+      } else {
         View::composer('*', function ($view) {
           $view->with('design', Design::where('active', 1)->first())
                ->with('footerPages', Page::where('title', '!=', 'A-propos')->get());
         });
-
+      }
     }
 }
