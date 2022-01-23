@@ -70,6 +70,7 @@
               <pre class="m-0 h-100"><code class="javascript text-left h-100">{!! $chart->js !!}</code></pre>
             </div>
           </div><!-- Code part -->
+
         </div><!-- Code & Description Row -->
     </div><!-- Container -->
   </div><!-- Code & Description -->
