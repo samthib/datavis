@@ -32,7 +32,7 @@
     <div class="col-6 col-md">
       <h5 class="text-white">Fonctionnement</h5>
       <ul class="list-unstyled text-small">
-        @foreach ($pages as $key => $page)
+        @foreach ($footerPages as $key => $page)
           <li><a class="text-muted" href="{!! route('pages.show', $page) !!}">{{ $page->title }}</a></li>
         @endforeach
       </ul>

@@ -36,15 +36,12 @@ class AppServiceProvider extends ServiceProvider
       /* Custom style on all views */
       // View::share([
         //   'design' => Design::where('active', 1)->first(),
-        //   'pages' => Page::where('title', '!=', 'A-propos')->get(),
+        //   'pageNames' => Page::where('title', '!=', 'A-propos')->get(),
         // ]);
         
         View::composer('*', function ($view) {
-          /* Designs parts for Guests */
-          if (!Str::contains(url()->current(), 'admin')) {
-            $view->with('design', Design::where('active', 1)->first())
-                 ->with('pages', Page::where('title', '!=', 'A-propos')->get());
-          }
+          $view->with('design', Design::where('active', 1)->first())
+               ->with('footerPages', Page::where('title', '!=', 'A-propos')->get());
         });
 
     }
