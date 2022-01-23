@@ -5,24 +5,25 @@ namespace Tests\Unit;
 use Tests\TestCase;
 // use PHPUnit\Framework\TestCase;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Page;
 
+use App\Models\User;
 use App\Models\Chart;
 use App\Models\Design;
-use App\Models\Page;
-use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RouteTest extends TestCase
 {
-  // use RefreshDatabase;
+  use RefreshDatabase;
+
 
   public function test_routes_charts()
   {
     $chart = Chart::factory()->create();
 
     $this->route_url_equals_route_name('/', 'charts.index');
-    $this->route_url_equals_route_name('/charts/'.$chart->title, 'charts.show', [$chart]);
-    $this->route_url_equals_route_name('/shadow/'.$chart->title, 'charts.shadow', [$chart]);
+    $this->route_url_equals_route_name('/charts/'.$chart->slug, 'charts.show', [$chart]);
+    $this->route_url_equals_route_name('/shadow/'.$chart->slug, 'charts.shadow', [$chart]);
   }
 
   public function test_routes_messages()
@@ -37,7 +38,7 @@ class RouteTest extends TestCase
 
     $this->route_url_equals_route_name('/A-propos', 'pages.abouts');
     $this->route_url_equals_route_name('/features', 'pages.features');
-    $this->route_url_equals_route_name('/'.$page->title, 'pages.show', [$page]);
+    $this->route_url_equals_route_name('/'.$page->slug, 'pages.show', [$page]);
   }
 
   public function test_routes_admin_dashboards()

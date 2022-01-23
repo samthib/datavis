@@ -26,8 +26,8 @@ class DesignFactory extends Factory
             'title' => $this->faker->name,
             'subtitle' => $this->faker->sentence(3),
             'description' => $this->faker->sentence(7),
-            'hero' => $this->faker->image(null, 640, 480),
-            'logo' => $this->faker->image(null, 640, 480),
+            'hero' =>$this->faker->imageUrl(640, 480, 'animals', true),
+            'logo' =>$this->faker->imageUrl(640, 480, 'animals', true),
             'color' => $this->faker->hexColor(),
         ];
     }

@@ -22,11 +22,14 @@ class PageFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->name;
+
         return [
-            'title' => Str::slug($this->faker->name, '_'),
+            'slug' => Str::slug($title, '_'),
+            'title' => $title,
             'subtitle' => $this->faker->sentence(3),
             'content' => $this->faker->randomHtml(),
-            'icon' => $this->faker->image(null, 80, 80),
+            'icon' => $this->faker->imageUrl(80, 80, 'animals', true),
         ];
     }
 }

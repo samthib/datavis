@@ -22,8 +22,11 @@ class ChartFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->name;
+
         return [
-            'title' => Str::slug($this->faker->name, '_'),
+            'slug' => Str::slug($title, '_'),
+            'title' => $title,
             'subtitle' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
             'js' => $this->faker->text(),

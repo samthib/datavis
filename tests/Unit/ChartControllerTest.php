@@ -6,9 +6,12 @@ use Tests\TestCase;
 // use PHPUnit\Framework\TestCase;
 
 use App\Models\Chart;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ChartControllerTest extends TestCase
 {
+  use RefreshDatabase;
+  
   public function setUp(): void
   {
     parent::setUp();

@@ -12,10 +12,7 @@ class VisitMiddlewareTest extends TestCase
 
     public function test_increment_visit_counter()
     {
-        $visitLast = Visit::create([
-            'count' => 0,
-            'date' => now()
-        ]);
+        $visitLast = Visit::latest()->first();
 
         $this->get('/');
 

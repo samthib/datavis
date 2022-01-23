@@ -7,9 +7,12 @@ use Tests\TestCase;
 
 use App\Models\User;
 use App\Models\Chart;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ChartControllerTest extends TestCase
 {
+  use RefreshDatabase;
+
   public $responseInit;
 
   public function setUp(): void
@@ -65,7 +68,7 @@ class ChartControllerTest extends TestCase
 
   public function test_admin_show()
   {
-    $chart = Chart::latest()->first();
+    $chart = Chart::factory()->create();
 
     $response = $this->responseInit
       ->get(route('admin.charts.show', $chart));
@@ -77,7 +80,7 @@ class ChartControllerTest extends TestCase
 
   public function test_admin_edit()
   {
-    $chart = Chart::first();
+    $chart = Chart::factory()->create();
 
     $response = $this->responseInit
       ->get(route('admin.charts.edit', $chart));
@@ -89,7 +92,7 @@ class ChartControllerTest extends TestCase
 
   public function test_admin_update()
   {
-    $chart = Chart::latest()->first();
+    $chart = Chart::factory()->create();
 
     $datas = [
       'title' => 'My Chart update',
@@ -116,7 +119,7 @@ class ChartControllerTest extends TestCase
 
   public function test_admin_destroy()
   {
-    $chart = Chart::latest()->first();
+    $chart = Chart::factory()->create();
 
     $response = $this->responseInit
                      ->withoutMiddleware()
