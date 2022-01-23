@@ -2,14 +2,15 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
-use Illuminate\Support\Facades\View;
-
-use Illuminate\Pagination\Paginator;
+use App\Models\Page;
 
 use App\Models\Design;
-use App\Models\Page;
+
+use Illuminate\Support\Str;
+
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,16 +32,20 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
       Paginator::useBootstrap();
-
+      
       /* Custom style on all views */
       // View::share([
-      //   'design' => Design::where('active', 1)->first(),
-      //   'pages' => Page::where('title', '!=', 'A-propos')->get(),
-      // ]);
+        //   'design' => Design::where('active', 1)->first(),
+        //   'pages' => Page::where('title', '!=', 'A-propos')->get(),
+        // ]);
+        
+        View::composer('*', function ($view) {
+          /* Designs parts for Guests */
+          if (!Str::contains(url()->current(), 'admin')) {
+            $view->with('design', Design::where('active', 1)->first())
+                 ->with('pages', Page::where('title', '!=', 'A-propos')->get());
+          }
+        });
 
-      View::composer('*', function ($view) {
-        $view->with('design', Design::where('active', 1)->first())
-             ->with('pages', Page::where('title', '!=', 'A-propos')->get());
-      });
     }
 }
