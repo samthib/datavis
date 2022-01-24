@@ -4,12 +4,13 @@
 
 <p align="center"><a href="http://datavis.samuel-thibault.fr/" target="_blank"><img src="http://datavis.samuel-thibault.fr/storage/medias/images/K6LNhcNxIGfeUnvfwPzBOvWUfQQQ1UTQPi8VBrtx.png" width="300"></a></p>
 
-
-![](https://img.shields.io/github/package-json/v/samthib/datavis)
+![](https://img.shields.io/github/last-commit/samthib/datavis)
+![](https://img.shields.io/github/commit-activity/m/samthib/datavis)
 ![](https://img.shields.io/github/stars/samthib/datavis)
 ![](https://img.shields.io/github/issues/samthib/datavis)
 ![](https://img.shields.io/github/forks/samthib/datavis)
 ![](https://img.shields.io/github/stars/samthib/datavis?style=social)
+
 
 ## Table of contents
 
