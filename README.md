@@ -1,13 +1,17 @@
-# Datavis CMS for data visualisation
+<h1 align="center">Datavis</h1>
+
+<h3 align="center">CMS for data visualisation</h3>
 
 <p align="center"><a href="http://datavis.samuel-thibault.fr/" target="_blank"><img src="http://datavis.samuel-thibault.fr/storage/medias/images/K6LNhcNxIGfeUnvfwPzBOvWUfQQQ1UTQPi8VBrtx.png" width="400"></a></p>
 
+
 ## Table of contents
 
-- [Package description](#datavis-cms-for-data-visualisation)
+- [Description](#datavis)
 - [About](#about-datavis)
 - [Installation](#installation)
     - [Requirements](#requirements)
+    - [Dependencies](#dependencies)
 - [Security Vulnerabilities](#security-vulnerabilities)
 - [Author](#author)
 - [License](#license)
@@ -15,9 +19,9 @@
 
 ## About Datavis
 
-<h2>Site dedicated to data analysis and data visualization.</h2>
+<h3> Site dedicated to data analysis and data visualization.</h3>
 
-<h3>Under construction ...</h3>
+<h4 align="center">Under construction ...</h4>
 
 ## Installation
 
@@ -25,6 +29,10 @@
 
 * **=> PHP 7.4**
 
+### Dependencies
+
+* **=> html2canvas 1.3.2**
+* **=> jspdf 2.4.0**
 
 ## Security Vulnerabilities
 
@@ -32,7 +40,7 @@ If you discover a security vulnerability within Datavis, please send an e-mail t
 
 ## Author
 
-I'm Samuel Thibault, web developer freelance. You can contact me by the links below. [Contact](#contact).
+I'm Samuel Thibault, web developer freelance. You can contact me by the links below. [`Contact`](#contact).
 
 ## License
 
