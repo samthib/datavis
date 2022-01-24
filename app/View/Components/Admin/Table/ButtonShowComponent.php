@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class ButtonShowComponent extends Component
 {
+    public $showLink;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(
-      public $showLink,
-    ){}
+    public function __construct($showLink){
+      $this->showLink = $showLink;
+    }
 
     /**
      * Get the view / contents that represent the component.

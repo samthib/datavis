@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class ButtonDeleteComponent extends Component
 {
+    public $key;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(
-      public $key
-    ){}
+    public function __construct($key){
+      $this->key = $key;
+    }
 
     /**
      * Get the view / contents that represent the component.

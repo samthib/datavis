@@ -6,16 +6,20 @@ use Illuminate\View\Component;
 
 class CreateComponent extends Component
 {
+    public $pluralName;
+    public $title;
+    public $indexLink;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-     public function __construct(
-       public $pluralName,
-       public $title,
-       public $indexLink,
-     ) {}
+     public function __construct($pluralName, $title, $indexLink) {
+       $this->pluralName = $pluralName;
+       $this->title = $title;
+       $this->indexLink = $indexLink;
+     }
 
     /**
      * Get the view / contents that represent the component.

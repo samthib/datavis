@@ -6,16 +6,20 @@ use Illuminate\View\Component;
 
 class ModalDeleteComponent extends Component
 {
+    public $key;
+    public $name;
+    public $destroyLink;
+    
     /**
      * Create a new component instance.
      *
      * @return void
      */
-     public function __construct(
-         public $key,
-         public $name,
-         public $destroyLink,
-       ) {}
+     public function __construct($key, $name, $destroyLink) {
+         $this->key = $key;
+         $this->name = $name;
+         $this->destroyLink = $destroyLink;
+      }
 
     /**
      * Get the view / contents that represent the component.

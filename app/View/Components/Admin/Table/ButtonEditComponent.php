@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class ButtonEditComponent extends Component
 {
+    public $editLink;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-     public function __construct(
-       public $editLink,
-     ){}
+     public function __construct($editLink){
+       $this->editLink = $editLink;
+     }
 
     /**
      * Get the view / contents that represent the component.
