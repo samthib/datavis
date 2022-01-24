@@ -47,7 +47,7 @@ If you discover a security vulnerability within Datavis, please send an e-mail t
 
 ## Author
 
-I'm Samuel Thibault, web developer freelance. You can contact me by the links below. [`Contact`](#contact).
+I'm Samuel Thibault, **Freelance Web Developer**. You can contact me by the links below. [`Contact`](#contact).
 
 ## License
 
