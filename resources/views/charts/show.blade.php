@@ -3,9 +3,9 @@
 @section('content')
 
   <!-- Graph -->
-  <div class="d-md-flex flex-md-equal w-100 text-white">
+  <div class="bg-dark d-md-flex flex-md-equal w-100 text-white">
     <!-- Graph part -->
-    <div class="bg-dark py-1 pt-md-3 pb-md-5 text-center overflow-hidden shadow">
+    <div class="py-1 pt-md-3 pb-md-5 text-center shadow">
       <h2 id="title-chart" class="display-5 my-1 py-3 title-chart">{{ $chart->title }}</h2>
 
       <!-- Modal button container -->
@@ -60,7 +60,7 @@
               <h4 class="display-5 pt-5">{{ $chart->subtitle }}</h4>
               <p class="py-5 px-3 px-md-4">{{ $chart->description }}</p>
             </div>
-            <a class="btn btn-outline-dark btn-lg my-1 p-1" href="{{ route('charts.index')  }}" role="button">Retour</a>
+            <a class="btn btn-outline-dark btn-lg my-1 my-md-3 my-lg-5" href="{{ route('charts.index')  }}" role="button">Retour</a>
           </div><!-- Description part -->
 
           <!-- Code part -->
@@ -74,6 +74,5 @@
         </div><!-- Code & Description Row -->
     </div><!-- Container -->
   </div><!-- Code & Description -->
-
 
 @endsection

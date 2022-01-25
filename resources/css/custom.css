@@ -1,12 +1,32 @@
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
-a, a:hover, a:active {
-  text-decoration: none;
-  color: inherit;
+a,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: inherit;
 }
 
 /* Zoom on card on hover */
 .feature-card:hover {
-  transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+
+/* Custom full screen modal */
+.modal {
+    padding: 0 !important; /* override inline padding-right added from js */
+}
+.modal .modal-dialog {
+    width: 90%;
+    max-width: none;
+    height: auto;
+}
+.modal .modal-content {
+    height: 100%;
+    border-radius: 21px;
+}
+.modal .modal-body {
+    overflow-y: auto;
 }

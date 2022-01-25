@@ -8,5 +8,6 @@
 }
 .hero-img {
   background-image: url("{{ asset('storage/'.($design->hero ?? '')) }}");
+  background-size: cover;
 }
 </style>

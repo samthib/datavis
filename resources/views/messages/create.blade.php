@@ -3,9 +3,9 @@
 @section('content')
 
   <!-- Email -->
-  <div class="d-md-flex flex-md-equal text-white">
+  <div class="bg-dark d-md-flex flex-md-equal text-white min-vh-100">
     <!-- Email part -->
-    <div class="bg-dark py-1 pt-md-3 pb-md-5 text-center overflow-hidden">
+    <div class="py-1 pt-md-3 pb-md-5 text-center">
       <h2 class="display-5 my-md-5 py-3">Contactez moi</h2>
       <div class="mx-auto col-11 col-md-8 col-lg-6">
 
