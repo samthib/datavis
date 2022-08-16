@@ -33,17 +33,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function()
     });
 
     Route::get('/dashboards', [Admin\DashboardController::class, 'index'])->name('dashboards.index');
-
     Route::resource('/charts', Admin\ChartController::class);
-
     Route::resource('/libraries', Admin\LibraryController::class);
-
     Route::resource('/datas', Admin\DataController::class);
-
     Route::resource('/files', Admin\FileController::class);
-
     Route::resource('/medias', Admin\MediaController::class);
-
     Route::resource('/users', Admin\UserController::class);
 
     /* Route to manage the application's Design */
@@ -72,3 +66,4 @@ Route::post('/messages/store', [MessageController::class, 'store'])->name('messa
 Route::get('/A-propos', [PageController::class, 'abouts'])->name('pages.abouts');
 Route::get('/features', [PageController::class, 'features'])->name('pages.features');
 Route::get('/{page:slug}', [PageController::class, 'show'])->name('pages.show');
+

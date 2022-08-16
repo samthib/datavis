@@ -61,16 +61,16 @@ class DesignController extends Controller
       }
 
       /* Record the hero image */
-      $validated['hero'] = optional($request->file('hero'))->store('img/heros', 'public') ?? '';      
+      $validated['hero'] = optional($request->file('hero'))->store('img/heros', 'public') ?? '';
 
       /* Record the logo image */
-      $validated['logo'] = optional($request->file('logo'))->store('img/logos', 'public') ?? '';      
+      $validated['logo'] = optional($request->file('logo'))->store('img/logos', 'public') ?? '';
 
 
       $validated['active'] = $request->has('active');
 
       $design = Design::create($validated);
-      
+
       return redirect()->route('admin.designs.index', compact('design'))->with('message', 'Design recorded');
     }
 

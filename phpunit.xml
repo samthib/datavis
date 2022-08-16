@@ -16,6 +16,15 @@
         <include>
             <directory suffix=".php">./app</directory>
         </include>
+        <report>
+          <!-- <clover outputFile="tests/Report/clover.xml"/> -->
+          <!-- <cobertura outputFile="tests/Report/cobertura.xml"/> -->
+          <!-- <crap4j outputFile="tests/Report/crap4j.xml" threshold="50"/> -->
+          <html outputDirectory="tests/Report/html-coverage" lowUpperBound="50" highLowerBound="90"/>
+          <!-- <php outputFile="tests/Report/coverage.php"/> -->
+          <!-- <text outputFile="tests/Report/coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/> -->
+          <!-- <xml outputDirectory="tests/Report/xml-coverage"/> -->
+        </report>
     </coverage>
     <php>
         <server name="APP_ENV" value="testing"/>
